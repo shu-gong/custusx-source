@@ -460,7 +460,8 @@ class CustusX(CppComponent):
     def sourceFolder(self):
         return self.controlData.getRepoFolderName()
     def repository(self):
-        return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
+        #return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
+	return "https://github.com/shu-gong/custusx-source"
     def _rawCheckout(self):
         pass # should never happen. This file is in the repo.
         #self._getBuilder().gitCloneIntoExistingDirectory(self.repository(), self.controlData.main_branch)
