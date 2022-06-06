@@ -10,15 +10,12 @@
 #
 #################################################
 
-from __future__ import print_function
-from __future__ import absolute_import
-from builtins import object
 import sys
 import re
 import pprint
-from . import cxUtilities
+import cxUtilities
 
-class CatchCustomXmlNameListParser(object):
+class CatchCustomXmlNameListParser:
     '''
     Parser providing the test names and tags from
     the "catch --list-tests --reporter xml" call.
@@ -53,7 +50,7 @@ class CatchCustomXmlNameListParser(object):
                 newtext+=line
         return newtext
 
-class CatchConsoleNameListParser(object):
+class CatchConsoleNameListParser:
     '''
     Parser providing the test names and tags from 
     the original "catch --list-tests" call
@@ -78,28 +75,28 @@ class CatchConsoleNameListParser(object):
   
     def validate(self):      
         if not self.isValid():
-            print("Number of tests from footer: %s" % self.numberOfTests)
-            print("Number of tests from parse: %s" % len(self.tests))
-            print("Parser failed.")
+            print "Number of tests from footer: %s" % self.numberOfTests
+            print "Number of tests from parse: %s" % len(self.tests)
+            print "Parser failed."
             exit(1)
         
     def _printLines(self, header):
         self._printHeader(header)
         for line in self.lines:
-            print("%s" % line.strip('\n'))
+            print "%s" % line.strip('\n')
             #print "<%s>" % line.strip('\n')
 
     def printTests(self, header):
         self._printHeader(header)
         for index,test in enumerate(self.tests):
-            print("#%d: %s" % (index+1, test))
-        print("")
-        print("%d tests." % len(self.tests))
+            print "#%d: %s" % (index+1, test)
+        print ""
+        print "%d tests." % len(self.tests)
         
     def _printHeader(self, header):
-        print('')
-        print("=== %s ===" % header) 
-        print('')
+        print ''
+        print "=== %s ===" % header 
+        print ''
 
     def _removeHeaderAndFooter(self):
         startLine = self._findLineIndexAfterHeader()

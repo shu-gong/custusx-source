@@ -8,7 +8,6 @@
 #
 #####################################################
 
-from __future__ import print_function
 import cx.script.cxBuildScript
 import cx.build.cxCustusXBuilder
 from cx.utils.cxPrintFormatter import PrintFormatter
@@ -38,7 +37,7 @@ class Controller(cx.script.cxBuildScript.BuildScript):
     def applyArgumentParsers(self, arguments):
         arguments = super(Controller, self).applyArgumentParsers(arguments)
         (self.options, arguments) = self.getArgParser().parse_known_args(arguments)
-        print('Options: ', self.options)
+        print 'Options: ', self.options
         return arguments
 
     def getArgParser(self):

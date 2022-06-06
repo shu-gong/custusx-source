@@ -30,16 +30,12 @@
 #             
 #################################################             
 
-from __future__ import print_function
-from future import standard_library
-standard_library.install_aliases()
-from builtins import object
 import subprocess
 import optparse
 import re
 import sys
 import os.path
-import urllib.request, urllib.parse, urllib.error
+import urllib
 import getpass
 import platform
 import argparse
@@ -76,7 +72,6 @@ class Common(object):
         self.build_user_doc = False
         self.mGraphviz = False
         self.git_tag = None # if none, use main_branch
-        self.git_use_https = True
 
         self.publish_release_target                 = cx.utils.cxSSH.RemoteServerID("example.com", "/path/to/folder")
         self.publish_developer_documentation_target = cx.utils.cxSSH.RemoteServerID("example.com", "/path/to/folder")
@@ -95,10 +90,7 @@ class Common(object):
         self.publish_coverage_info_target           = cx.utils.cxSSH.RemoteServerID(server, "%s/gcov"%root_folder, user) 
 
         #self.gitrepo_internal_site_base = "user@example.com/path/to/folder" #intended for use with "git checkout ssh://%s"
-        if self.git_use_https:
-            self.gitrepo_open_site_base = "https://github.com/SINTEFMedtek"
-        else:
-            self.gitrepo_open_site_base = "git@github.com:SINTEFMedtek"
+        self.gitrepo_open_site_base = "git@github.com:SINTEFMedtek"  
         self.gitrepo_main_site_base = self.gitrepo_open_site_base 
 
         self.main_repo_folder = self.getCustusXRepositoryPath()
@@ -106,20 +98,20 @@ class Common(object):
         self.system_base_name = "CustusX"
 
     def printSettings(self):
-        print('')
-        print('Settings:')
-        print('    system_base_name:', self.system_base_name)
-        print('    root path: %s ' % self.getRootDir())
-        print('    build type:', self.getBuildType())
-        print('    platform:', platform.system())
-        print('    git tag:', self.git_tag)
-        print('    git branch:', self.main_branch)
-        print('')
-        print('    CMakeGenerator:', self.getCMakeGenerator())
-        print('    BuildTesting:', self.mBuildTesting)
-        print('    Coverage:', self.mCoverage)
-        print('    Make dependency graph:', self.mGraphviz)
-        print('')
+        print ''
+        print 'Settings:'
+        print '    system_base_name:', self.system_base_name
+        print '    root path: %s ' % self.getRootDir()
+        print '    build type:', self.getBuildType()
+        print '    platform:', platform.system()
+        print '    git tag:', self.git_tag
+        print '    git branch:', self.main_branch
+        print ''
+        print '    CMakeGenerator:', self.getCMakeGenerator()
+        print '    BuildTesting:', self.mBuildTesting
+        print '    Coverage:', self.mCoverage
+        print '    Make dependency graph:', self.mGraphviz
+        print ''
 
     def getArgParser_core_build(self):
         p = cx.utils.cxArgParse.ArgumentParser(add_help=False)
@@ -166,7 +158,7 @@ class Common(object):
             return
         input = os.path.abspath(self.root_dir)
         if self.getRootDir() != input:
-            print("!!! WARNING: deprecated input root path=[%s] is different from generated value [%s]" % (input, self.getRootDir()))
+            print "!!! WARNING: deprecated input root path=[%s] is different from generated value [%s]" % (input, self.getRootDir())
 
     def getCMakeGenerator(self):
         if self.xcode:

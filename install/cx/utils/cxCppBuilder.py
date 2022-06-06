@@ -10,26 +10,20 @@
 #             
 #################################################             
 
-from __future__ import print_function
-from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
-from builtins import object
 import subprocess
 import optparse
 import re
 import sys
 import os.path
-import urllib.request, urllib.parse, urllib.error
+import urllib
 import getpass
 import platform
 import shutil
-from . import cxRepoHandler
+import cxRepoHandler
 
-from .cxShell import *
+from cxShell import *
     
-class CppBuilder(object):
+class CppBuilder:
     '''
     Contains methods for working on a cpp project
     '''
@@ -137,22 +131,12 @@ class CppBuilder(object):
         '''
         self.gitCheckoutTag(tag)
 
-    def gitCheckoutSha(self, sha):
-        '''
-        Use this function when checking out a git sha,
-        instead of gitCheckout/gitCheckoutTag,
-        as they will output confusing warnings
-        '''
-        self._changeDirToSource()
-        runShell('git fetch')
-        runShell('git checkout %s' % sha)
-
     def _checkGitIsAtTag(self, tag):
         output = shell.evaluate('git describe --tags --exact-match')
         if not output:
             return False
         if output.stdout.strip()==tag:
-            print("Skipping git update: Tag %s already at HEAD in %s" % (tag, self.mSourcePath))
+            print "Skipping git update: Tag %s already at HEAD in %s" % (tag, self.mSourcePath)
             return True
         return False
                     
@@ -178,20 +162,20 @@ class CppBuilder(object):
 
     def addCMakeOption(self, key, value):
         if('CMAKE_CXX_FLAGS:STRING' == key):
-            print('WARNING: CMAKE_CXX_FLAGS must be added by CMakeFiles, skipping: '+value)
+            print 'WARNING: CMAKE_CXX_FLAGS must be added by CMakeFiles, skipping: '+value
             return
         self.cmakeOptions[key] = value
 
     def appendCMakeOption(self, key, value):
         temp = ""
-        if(key in self.cmakeOptions):
+        if(self.cmakeOptions.has_key(key)):
             temp = self.cmakeOptions[key]
-            print(key+" was set to "+temp)
+            print key+" was set to "+temp
         if(not temp):
             new = value
         else:
             new = temp+" "+value
-        print(key+" is now set to "+new)
+        print key+" is now set to "+new
         self.cmakeOptions[key] = new
 
     def configureCMake(self, options=''): 
@@ -209,7 +193,7 @@ class CppBuilder(object):
         add = self.addCMakeOption
         append = self.appendCMakeOption
         if(platform.system() != 'Windows'):
-            append('CX_CMAKE_CXX_FLAGS:STRING', '-Wno-deprecated -Wno-unknown-warning-option -Wno-inconsistent-missing-override -Wno-self-assign-field')
+            append('CX_CMAKE_CXX_FLAGS:STRING', '-Wno-deprecated -Wno-unknown-warning-option -Wno-inconsistent-missing-override')
         add('CMAKE_BUILD_TYPE:STRING', self.mBuildType)        
         if self.controlData.m32bit: # todo: add if darwin
             add('CMAKE_OSX_ARCHITECTURES', 'i386')
@@ -219,11 +203,11 @@ class CppBuilder(object):
         add('CMAKE_ECLIPSE_GENERATE_LINKED_RESOURCES', False)
     
     def _assembleOptions(self):
-        return " ".join(['-D%s="%s"'%(key,val) for key,val in self.cmakeOptions.items()])
+        return " ".join(['-D%s="%s"'%(key,val) for key,val in self.cmakeOptions.iteritems()])
     
     def _printOptions(self):
-        options = "".join(["    %s = %s\n"%(key,val) for key,val in self.cmakeOptions.items()])
-        print("*** CMake Options:\n", options)
+        options = "".join(["    %s = %s\n"%(key,val) for key,val in self.cmakeOptions.iteritems()])
+        print "*** CMake Options:\n", options
 
     def _changeDirToBase(self):
         changeDir(self.mBasePath)

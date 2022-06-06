@@ -10,13 +10,11 @@
 #
 #####################################################
 
-from __future__ import print_function
-from __future__ import absolute_import
 import sys
 import argparse        
 import os
 
-from . import cxJenkinsBuildScriptBase
+import cxJenkinsBuildScriptBase
 
 
 
@@ -38,7 +36,7 @@ class Controller(cxJenkinsBuildScriptBase.Controller):
     def applyArgumentParsers(self, arguments):
         arguments = super(Controller, self).applyArgumentParsers(arguments)
         (self.options, arguments) = self.getArgParser().parse_known_args(arguments)
-        print('Master options: ', self.options)
+        print 'Master options: ', self.options
 
         return arguments
 
@@ -72,18 +70,8 @@ class Controller(cxJenkinsBuildScriptBase.Controller):
         
         return p
  
-    def _createBuildFlagFile(self, buildFlagFile):
-      print("Creating " + buildFlagFile)
-      open(buildFlagFile, 'a').close() # Create empty file
-    def _deleteBuildFlagFile(self, buildFlagFile):
-      print("Deleting " + buildFlagFile)
-      os.remove(buildFlagFile)
-
     def run(self):
         options = self.options        
-
-        buildFlagFile = self.controlData().getRootDir() + '/../buildFlagFile'
-        self._createBuildFlagFile(buildFlagFile);
 
         if options.analyze:
             self.runAnalyze()
@@ -119,7 +107,6 @@ class Controller(cxJenkinsBuildScriptBase.Controller):
                                            skip_publish_docs=options.skip_publish_docs)
                         
         self.cxBuilder.finish()
-        self._deleteBuildFlagFile(buildFlagFile)
         
 if __name__ == '__main__':
     controller = Controller()

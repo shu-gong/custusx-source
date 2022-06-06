@@ -10,24 +10,20 @@
 #
 #################################################             
 
-from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
-from builtins import object
 import subprocess
 import argparse
 import re
 import sys
 import os.path
-import urllib.request, urllib.parse, urllib.error
+import urllib
 import getpass
 import platform
 import time
 
 from cx.utils.cxShell import *
 from cx.utils.cxPrintFormatter import PrintFormatter
-from . import cxInstallData
-from . import cxComponents
+import cxInstallData
+import cxComponents
 
 class LibraryAssembly(object):
     '''
@@ -43,7 +39,6 @@ class LibraryAssembly(object):
         self.custusx = cxComponents.CustusX()
 
         self.addComponent(cxComponents.Eigen())
-	self.addComponent(cxComponents.Flann())
         self.addComponent(cxComponents.VTK())
         self.addComponent(cxComponents.ITK())
         self.addComponent(cxComponents.OpenCV())
@@ -53,10 +48,8 @@ class LibraryAssembly(object):
         self.addComponent(cxComponents.OpenIGTLinkIO())
         self.addComponent(cxComponents.OpenCLUtilityLibrary())
         self.addComponent(cxComponents.QHttpServer())
-        #if(platform.system() == 'Linux'):
-        #  self.addComponent(cxComponents.FAST()) # NB: Using old version of FAST for macOS
+        self.addComponent(cxComponents.FAST())
         self.addComponent(cxComponents.org_custusx_angleCorrection())
-				#self.addComponent(cxComponents.org_custusx_mariana())
         self.addComponent(self.custusx)
         self.addComponent(cxComponents.CustusXData())
         

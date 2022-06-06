@@ -10,7 +10,6 @@
 #
 #####################################################
 
-from __future__ import absolute_import
 import sys
 import argparse        
 
@@ -20,7 +19,7 @@ import cx.build.cxInstallData
 import cx.build.cxComponents
 import cx.build.cxCustusXBuilder
 
-from . import cxJenkinsBuildScriptBase
+import cxJenkinsBuildScriptBase
 
 class Controller(cxJenkinsBuildScriptBase.Controller):
     '''

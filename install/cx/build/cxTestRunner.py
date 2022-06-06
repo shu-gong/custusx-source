@@ -10,7 +10,6 @@
 #
 #####################################################
 
-from builtins import object
 import logging
 import time    
 import subprocess
@@ -19,7 +18,6 @@ import argparse
 import glob
 import platform
 import os
-import posixpath
 
 from cx.utils.cxShell import *
 from cx.utils.cxPrintFormatter import PrintFormatter
@@ -27,7 +25,7 @@ import cx.utils.cxCatchConsoleNameListParser
 import cx.utils.cxUtilities
 import cx.utils.cxConvertCTest2JUnit
 
-class TestRunner(object):
+class TestRunner:
     '''
     Utilities for runnit tests,
     based on the catch, cppunit and ctest frameworks.
@@ -163,7 +161,6 @@ class TestRunner(object):
                  '# ctest setup.'
                    ]
         catchExe = self._getCatchExecutable(path)
-        catchExe = catchExe.replace(os.sep, posixpath.sep)
         for testname in testnames:
             line = 'ADD_TEST("%s" %s "%s")' % (testname, catchExe, testname)
             lines.append(line)

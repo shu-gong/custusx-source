@@ -18,13 +18,8 @@
 #
 #################################################             
 
-from __future__ import print_function
-from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
-from . import cxUtilities
-import io
+import cxUtilities
+import StringIO
 import sys
 
 def transformXML(sourceXml, xlsTransform):
@@ -33,10 +28,8 @@ def transformXML(sourceXml, xlsTransform):
     xls transform string, return result.
     '''  
     lxml = cxUtilities.try_lxml_import()
-
-    bytesio = io.BytesIO(sourceXml)
-    xmldoc = lxml.etree.parse(bytesio)
-
+  
+    xmldoc = lxml.etree.parse(StringIO.StringIO(sourceXml))
     xslt_root = lxml.etree.XML(xlsTransform)
     transform = lxml.etree.XSLT(xslt_root)
     
