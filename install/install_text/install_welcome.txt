@@ -1,0 +1,3 @@
+Welcome to the CustusX installer.
+
+This installer will guide you through the steps required to install CustusX on your computer.
