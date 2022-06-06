@@ -1,0 +1,118 @@
+<!DOCTYPE PresetTransferFunctions3D>
+<root>
+	<Preset modality="CT" name="3D CT Abdomen">
+		<transferfunctions>
+		    <alpha>-1024=0 -334=0 45=0 182=138 318=255 1504=255</alpha>
+		    <color>-1024=0/0/0 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Bone">
+		<transferfunctions>
+		    <alpha>-1024=0 -334=0 120=0 230=255 1504=255</alpha>
+		    <color>-1024=0/0/0 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Lung + bone">
+		<transferfunctions>
+		    <alpha>-1024=128 -472=0 135=0 230=255 1504=255</alpha>
+		    <color>-1024=102/192/255 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Lung">
+		<transferfunctions>
+		    <alpha>-1024=70 -472=70 1504=0</alpha>
+		    <color>-1024=102/192/255 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Aorta">
+		<transferfunctions>
+		    <alpha>-1024=0 -724=0 82=1 177=85 543=1 449=2 1504=0</alpha>
+		    <color>-1024=144/203/255 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Lung + aorta">
+		<transferfunctions>
+		    <alpha>-1024=30 -724=0 82=1 204=156 208=189 366=1 449=2 1504=0</alpha>
+		    <color>-1024=144/203/255 109=255/0/0 144=255/154/73 392=255/255/255 1504=0/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D CT Airways">
+		<transferfunctions>
+		    <alpha>-1024=0 -662=0 -326=147 -98=0 3071=0</alpha>
+		    <color>-1024=0/0/0 936=0/255/255 1701=255/0/0 3071=255/0/0</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.2" diffuse="0.54" specular="0.72" specularPower="15.0"/>
+	</Preset>
+	<Preset modality="CT" name="3D Soft Tissue CT - Standard">
+		<transferfunctions>
+		    <alpha>0=0 202=7 404=34 549=174</alpha>
+		    <color>12=0/0/0 202=255/0/0 404=255/255/0 549=255/255/255</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.15" diffuse="0.90" specular="0.30" specularPower="15.0"/>
+	</Preset>
+	<Preset  modality="CT" name="3D CT Virtual Bronchoscopy">
+		<transferfunctions>
+			<alpha>-1024=0 -666=0 -499=255 -99=255 -98=0 3071=0</alpha>
+			<color>-1024=0/0/0 -1023=255/179/244 -701=255/208/231 485=255/0/0 3071=255/0/0</color>
+		</transferfunctions>
+		<shading specular="0.72" specularPower="15" ambient="0.2" on="1" diffuse="0.54"/>
+	</Preset>
+	<Preset name="Default">
+		<transferfunctions>
+		    <alpha></alpha>
+		    <color></color>
+		</transferfunctions>
+	</Preset>
+
+        <Preset name="2D CT Lung" modality="CT">
+            <lookuptable2D>
+                <alpha>-1025=0 -1024=255</alpha>
+                <color>-1429=0/0/0 239=255/255/255</color>
+            </lookuptable2D>
+        </Preset>
+
+        <Preset name="2D CT Abdomen" modality="CT">
+            <lookuptable2D>
+                <alpha>-1025=0 -1024=255</alpha>
+                <color>-125=0/0/0 225=255/255/255</color>
+            </lookuptable2D>
+        </Preset>
+	
+	<Preset modality="US" name="US Angio">
+		<transferfunctions window="255" alpha="1" llr="0" level="128">
+			<alpha>0=0 32=0 165=255 255=255</alpha>
+			<color>0=0/0/0 14=255/0/0 75=255/85/0 171=255/255/0 255=255/255/255</color>
+		</transferfunctions>
+		<lookuptable2D window="255" alpha="1" llr="10" level="128">
+			<alpha>0=0 9=0 10=255 245=255</alpha>
+			<color>0=0/0/0 14=255/0/0 75=255/85/0 171=255/255/0 255=255/255/255</color>
+		</lookuptable2D>
+		<shading ambient="0.2" diffuse="0.9" specular="0.3" on="0" specularPower="15"/>
+	</Preset>
+	
+	<Preset modality="US" name="US B-Mode">
+		<transferfunctions window="255" alpha="1" llr="0" level="128">
+			<alpha>0=0 24=0 164=255 255=255</alpha>
+			<color>0=0/0/0 255=255/255/255</color>
+		</transferfunctions>
+		<lookuptable2D window="255" alpha="1" llr="1" level="128">
+			<alpha>0=0 1=255 255=255</alpha>
+			<color>0=0/0/0 255=255/255/255</color>
+		</lookuptable2D>
+		<shading ambient="0.2" diffuse="0.9" specular="0.3" on="0" specularPower="15"/>
+	</Preset>
+    
+    <Preset modality="MR" name="MR Default">
+		<transferfunctions>
+		    <alpha>0=0 200=0 300=100 600=255</alpha>
+		    <color>0=0/0/0 480=255/255/255</color>
+		</transferfunctions>
+	    <shading on="1" ambient="0.15" diffuse="0.90" specular="0.30" specularPower="15.0"/>
+	</Preset>
+</root>

@@ -1,0 +1,31 @@
+// Base system name from CMake (CMake getting this from the Python installer script)
+#define CX_SYSTEM_BASE_NAME "@CX_SYSTEM_BASE_NAME@"
+
+// location of test data
+#define CX_DATA_ROOT "@CX_DATA_ROOT@"
+#define CX_LARGE_DATA_ROOT "@CX_LARGE_DATA_ROOT@"
+
+// location of configuration folders during compilation
+#define CX_CONFIG_ROOT "@CX_CONFIG_ROOT@"
+#define CX_OPTIONAL_CONFIG_ROOT "@CX_OPTIONAL_CONFIG_ROOT@"
+
+#define CustusX_VERSION_STRING "@CustusX_VERSION_STRING@"
+#define CustusX_VERSION_MAJOR "@CustusX_VERSION_MAJOR@"
+#define CustusX_VERSION_MINOR "@CustusX_VERSION_MINOR@"
+#define CustusX_VERSION_PATCH "@CustusX_VERSION_PATCH@"
+
+// location of configuration folders after install, relative to executable.
+#define CX_CONFIG_ROOT_RELATIVE_INSTALLED "@CX_CONFIG_ROOT_RELATIVE_INSTALLED@"
+
+#cmakedefine CX_CUSTUS_SINTEF
+#cmakedefine CX_BUILD_MEHDI_VTKMULTIVOLUME
+#cmakedefine CX_BUILD_US_SIMULATOR
+#cmakedefine CX_BUILD_FRAXINUS_TRACKING
+#cmakedefine CX_VTK_OPENGL2
+
+// location of documentation files during compilation
+#define CX_DOC_ROOT "@CX_DOC_ROOT@"
+// location of documentation files after install, relative to executable
+#define CX_DOC_ROOT_RELATIVE_INSTALLED "@CX_DOC_ROOT_RELATIVE_INSTALLED@"
+
+
