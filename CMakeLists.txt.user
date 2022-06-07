@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.5.1, 2022-06-04T16:30:12. -->
+<!-- Written by QtCreator 3.5.1, 2022-06-07T12:08:07. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -8,7 +8,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">1</value>
+  <value type="int">0</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -59,7 +59,7 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{d457b802-f935-4b9c-89e5-59ed4c8398d8}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
@@ -532,7 +532,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{544d81c9-20e4-440a-94e5-864704344ea7}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">7</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="bool" key="CMakeProjectManager.CMakeBuildConfiguration.UseNinja">true</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/shu/dev/cx/CX/build_Debug</value>

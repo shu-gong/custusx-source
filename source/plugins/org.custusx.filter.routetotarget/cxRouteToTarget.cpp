@@ -268,6 +268,8 @@ vtkPolyDataPtr RouteToTarget::findRouteToTarget(PointMetricPtr targetPoint)
 }
 
 
+
+
 vtkPolyDataPtr RouteToTarget::findExtendedRoute(PointMetricPtr targetPoint)
 {
 	mTargetPosition = targetPoint->getCoordinate();
@@ -292,6 +294,32 @@ vtkPolyDataPtr RouteToTarget::findExtendedRoute(PointMetricPtr targetPoint)
 
 	vtkPolyDataPtr retval = addVTKPoints(mExtendedRoutePositions);
 	return retval;
+}
+
+vtkPolyDataPtr RouteToTarget::findExtendedRouteStraight(PointMetricPtr targetPoint)
+{
+    mTargetPosition = targetPoint->getCoordinate();
+    double extensionPointIncrement = 0.25; //mm
+    mExtendedRoutePositions.clear();
+    mExtendedRoutePositions = mRoutePositions;
+    mExtendedCameraRotation.clear();
+    mExtendedCameraRotation = mCameraRotation;
+    if(mRoutePositions.size() > 0)
+    {
+        double extensionDistance = findDistance(mRoutePositions.front(),mTargetPosition);
+        Eigen::Vector3d extensionVectorNormalized = ( mTargetPosition - mRoutePositions.front() ) / extensionDistance;
+        int numberOfextensionPoints = int(extensionDistance / extensionPointIncrement);
+        Eigen::Vector3d extensionPointIncrementVector = extensionVectorNormalized * extensionDistance / numberOfextensionPoints;
+
+        for (int i = 1; i<= numberOfextensionPoints; i++)
+        {
+            mExtendedRoutePositions.insert(mExtendedRoutePositions.begin(), mRoutePositions.front() + extensionPointIncrementVector*i);
+            mExtendedCameraRotation.insert(mExtendedCameraRotation.begin(), mExtendedCameraRotation.front());
+        }
+    }
+
+    vtkPolyDataPtr retval = addVTKPoints(mExtendedRoutePositions);
+    return retval;
 }
 
 
