@@ -268,8 +268,6 @@ vtkPolyDataPtr RouteToTarget::findRouteToTarget(PointMetricPtr targetPoint)
 }
 
 
-
-
 vtkPolyDataPtr RouteToTarget::findExtendedRoute(PointMetricPtr targetPoint)
 {
 	mTargetPosition = targetPoint->getCoordinate();

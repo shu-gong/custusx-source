@@ -64,6 +64,7 @@ namespace planner {
     state_space::InsertState
     extend(const state_space::InsertState &source, const state_space::InsertState &target, double extend_length) {
         state_space::CircParams path_params = state_space::InsertState::solveParams(source, target);
+        if(extend_length ==0.) return source;
         auto result = source + state_space::InsertState(
                 state_space::R6(std::vector<double>{0., 0., path_params.theta, 0., 0., 0.}.data()));
         result = result + state_space::InsertState(

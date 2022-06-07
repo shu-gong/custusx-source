@@ -55,7 +55,16 @@ void PlanningWidget::startPlanning()
 //#ifdef VTK_
     vtkPolyDataPtr solution;
     try{
-        solution = planner_ptr->solve(start_state.translationPart(), goal_state.translationPart());
+        //solution = planner_ptr->solve(start_state.translationPart(), goal_state.translationPart());
+        Eigen::Vector3d start{-0.044938, -0.15572, -0.241432};
+        Eigen::Vector3d start_near_before{-0.0448, -0.15572, -0.2413};
+        Eigen::Vector3d goal{-0.0379019, -0.158161, -0.235144};
+        auto path = planner_ptr->solve(start, start_near_before, goal);
+        if(!path.empty()){
+            for(const auto& item: path){
+                std::cout<<item.transpose()<<std::endl;
+            }
+        }
     }catch(std::invalid_argument & e){
         std::cout<<e.what()<<std::endl;
     }

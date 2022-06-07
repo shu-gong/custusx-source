@@ -98,9 +98,9 @@ namespace state_space {
 
         explicit SO3(double roll, double pitch, double yaw)
         {
-            Eigen::AngleAxisd yawAngle(Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitX()));
+            Eigen::AngleAxisd rollAngle(Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX()));
             Eigen::AngleAxisd pitchAngle(Eigen::AngleAxisd(pitch, Eigen::Vector3d::UnitY()));
-            Eigen::AngleAxisd rollAngle(Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitZ()));
+            Eigen::AngleAxisd yawAngle(Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ()));
             Eigen::Matrix3d rotation_matrix{yawAngle * pitchAngle * rollAngle};
             *this = SO3(rotation_matrix);
         }

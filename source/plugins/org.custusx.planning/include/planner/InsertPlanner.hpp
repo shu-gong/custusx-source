@@ -76,6 +76,40 @@ namespace planner{
             RRT::constructPlan(InsertPlanRequest (start_state, goal_state, 2,
                                                   1.,false,0.001,0.25));
         }
+
+        std::vector<Eigen::Vector3d> solve(const Eigen::Vector3d& start, const Eigen::Vector3d& start_near,
+                                           const Eigen::Vector3d& goal){
+            std::vector<Eigen::Vector3d> positions;
+            // compute orientation for z-axis
+            constructPlan(state_space::InsertState{orientationZ( start - start_near),start}, state_space::InsertState{goal});
+            if (planning()) {
+                std::vector<state_space::InsertState> path = GetPath();
+                for (int i = 0; i < path.size() - 1; i++) {
+                    auto signal_params = state_space::InsertState::solveParams(path[i], path[i + 1]);
+                    double interval{0.};
+                    while (interval < 1.) {
+                        positions.emplace_back(planner::extend(path[i], path[i + 1], interval).translationPart());
+                        interval += 0.1;
+                    }
+                }
+            }
+            return positions;
+        }
+        /**
+         *
+         * @param theta The current bending angle of the final segment
+         * @param end The position of end w.r.t. base
+         * @param end_near The position of one point near to the end w.r.t. base
+         * @param goal The position of nodule w.r.t. base
+         * @return True for rotate in positive anti-clockwise, otherwise false
+         */
+        static bool solveBendingDirection(double theta, const Eigen::Vector3d& end, const Eigen::Vector3d& end_near,
+                                          const Eigen::Vector3d& goal){
+            const auto R = orientationZ( end - end_near);
+            Eigen::Vector3d orientated_vector = R.SO3Matrix() * (goal - end);
+            return solveBendingDirection(theta, orientated_vector[0]);
+        }
+
     protected:
         state_space::InsertState _sample() override{
             Eigen::Matrix<double, 1, 1> random;random.setRandom();
@@ -88,6 +122,25 @@ namespace planner{
             }
             return random_state;
         }
+        static inline state_space::SO3 orientationZ(const Eigen::Vector3d& axis){
+           auto direction = axis.normalized()  ;
+           auto sign = Eigen::sign(axis.array());
+           // consider a ZYX order
+           double yaw = std::acos(direction.block<2, 1>(0 ,0).dot(Eigen::Vector2d::UnitX())) * sign[1];
+           double pitch = std::acos(direction.dot(Eigen::Vector3d::UnitZ())) * sign[2];
+           return state_space::SO3{ 0., pitch, yaw};
+        }
+
+        static inline int sgn(double d){
+            const double eps = 1e-7;
+            return d<-eps?-1:d>eps;
+        }
+
+        static inline bool solveBendingDirection(double theta, double x){
+            int sign_Jx = sgn(-theta * std::sin(theta) - std::cos(theta) + 1.);
+            int sign_theta = sgn(x) * sign_Jx;
+            return sign_theta == 1.;
+        }
 
     private:
         static bool isReachable(const state_space::InsertState& from, const state_space::InsertState& to){
@@ -97,7 +150,7 @@ namespace planner{
             return r >= 1./ state_space::InsertState::curvature;
         }
 
-//#ifdef VTK_
+#ifdef VTK_
     public:
         /**
          *
@@ -139,7 +192,7 @@ namespace planner{
                 throw std::invalid_argument("Cannot plan a valid path");
             }
         }
-//#endif
+#endif
     };
 
     typedef std::shared_ptr<InsertPlanner> InsertRRTPtr;
