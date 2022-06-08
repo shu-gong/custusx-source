@@ -11,7 +11,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include <iostream>
 #include "cxPlanningWidget.h"
 #include "./include/planner/InsertPlanner.hpp"
-#include "cxLogicManager.h"
 
 namespace cx
 {
@@ -31,6 +30,7 @@ PlanningWidget::~PlanningWidget()
 void PlanningWidget::startPlanning()
 {
     qDebug()<<"开始规划了";
+
     planner::InsertBounds bounds(3,2);
     bounds << Eigen::Vector3d{0.2, 0.2, 0.2},
             Eigen::Vector3d{-0.2, -0.2, -0.2};
@@ -69,6 +69,8 @@ void PlanningWidget::startPlanning()
         std::cout<<e.what()<<std::endl;
     }
 //#endif
+
+
 
 }
 

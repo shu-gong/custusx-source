@@ -1,3 +1,4 @@
+//#pragma once
 #ifndef INSERTPLANNER_INSERTSPACE_HPP
 #define INSERTPLANNER_INSERTSPACE_HPP
 
@@ -39,6 +40,7 @@ namespace state_space {
         explicit InsertState(const Eigen::Vector3d &translation_part) : InsertState(SO3::Zero(), translation_part) {};
 
         explicit InsertState(const SO3 &SO3_part, const R3 &translation_part) : SE3(SO3_part, translation_part) {};
+#pragma once
 
         explicit InsertState(const std::vector<double> &vector_input) : SE3(vector_input) {};
 
@@ -56,6 +58,7 @@ namespace state_space {
             return {r * std::atan2(p[2], r - temp), r, std::atan2(p[0], -p[1])};
         };
         static double curvature;
+
     };
 
 }
@@ -81,7 +84,7 @@ namespace planner {
         return  (path_params.theta >= 0 && path_params.r >= 1./state_space::InsertState::curvature) ?
         std::abs(path_params.l) : std::numeric_limits<double>::max();*/
         return (from.translationPart() - to.translationPart()).norm();
-    };
+    }
 
     template<>
     state_space::InsertState randomState(int dimensions, const Eigen::MatrixX2d *bounds_ptr) {
@@ -89,6 +92,5 @@ namespace planner {
         return state_space::InsertState{Eigen::Vector3d{translation_part.Vector()}};
     }
 }
-
 
 #endif //INSERTPLANNER_INSERTSPACE_HPP

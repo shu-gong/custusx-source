@@ -1,3 +1,4 @@
+//#pragma once
 #ifndef INSERTPLANNER_INSERTRRT_HPP
 #define INSERTPLANNER_INSERTRRT_HPP
 
@@ -11,11 +12,6 @@
 #include <vtkPoints.h>
 #include <vtkPolyData.h>
 
-//#define VTK_
-
-//#ifdef VTK_
-
-//#endif
 
 double state_space::InsertState::curvature{20.};
 
@@ -26,6 +22,7 @@ namespace planner{
         state_space::CircParams params = state_space::InsertState::solveParams(from, to);
         return (params.theta >= 0. && params.r >= 1./state_space::InsertState::curvature) || params.l < 1e-14;
     }
+
     static void toArray(const state_space::InsertState& current, double * query_data) {
         memcpy(query_data, current.translationPart().data(), sizeof(double) * 3);
     }
@@ -150,7 +147,7 @@ namespace planner{
             return r >= 1./ state_space::InsertState::curvature;
         }
 
-#ifdef VTK_
+//#ifdef VTK_
     public:
         /**
          *
@@ -192,7 +189,7 @@ namespace planner{
                 throw std::invalid_argument("Cannot plan a valid path");
             }
         }
-#endif
+//#endif
     };
 
     typedef std::shared_ptr<InsertPlanner> InsertRRTPtr;

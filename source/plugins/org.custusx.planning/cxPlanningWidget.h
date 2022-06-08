@@ -8,7 +8,6 @@ CustusX is released under a BSD 3-Clause license.
                  
 See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt) for details.
 =========================================================================*/
-
 #ifndef CXPLANNINGWIDGET_H_
 #define CXPLANNINGWIDGET_H_
 
@@ -18,6 +17,8 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include <iostream>
 #include <QDebug>
 //#define VTK_
+
+//#include "cxPlanningWidget.h"
 
 
 class QVBoxLayout;

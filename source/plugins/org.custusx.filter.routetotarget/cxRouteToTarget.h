@@ -6,7 +6,6 @@
 #include "cxMesh.h"
 #include <QDomElement>
 
-
 namespace cx
 {
 
