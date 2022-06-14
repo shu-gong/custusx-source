@@ -343,9 +343,11 @@ class Flann(CppComponent):
         return self.controlData.getBuildExternalsType()
     def repository(self):
         if self.controlData.git_use_https:
-            return 'https://github.com/flann-lib/flann.git'
+            #return 'https://github.com/flann-lib/flann.git'
+            return 'https://github.com/shu-gong/flann-source.git'
         else:
-            return 'git@github.com:flann-lib/flann.git'
+            #return 'git@github.com:flann-lib/flann.git'
+            return 'git@github.com:shu-gong/flann-source.git'
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
         #See CX-208 about updating Eigen versions
