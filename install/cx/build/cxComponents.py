@@ -283,13 +283,15 @@ class OpenCV(CppComponent):
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
-        if self.useExternalRepositories():
-           return 'https://github.com/Itseez/opencv.git'
-        else:
-            return '%s/OpenCV.git' % self.controlData.gitrepo_main_site_base
+        # if self.useExternalRepositories():
+        #    return 'https://github.com/Itseez/opencv.git'
+        # else:
+        #     return '%s/OpenCV.git' % self.controlData.gitrepo_main_site_base
+        return 'https://github.com/opencv/opencv.git'
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
-        self._getBuilder().gitCheckoutSha('3.3.0')
+        # self._getBuilder().gitCheckoutSha('3.3.0')
+        self._getBuilder().gitCheckoutSha('4.6.0')
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
