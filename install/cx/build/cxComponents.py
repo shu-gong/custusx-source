@@ -188,7 +188,8 @@ class ITK(CppComponent):
         self._getBuilder().gitSetRemoteURL(self.repository())
         # Using ITK v4.12.0 with a fix for gcc 9
         # Newer ITK versions makes IGSTK compilation fail
-        self._getBuilder().gitCheckoutSha('87b43dfc5e83819fcbc036db18ac2db021e5bfc6')
+        #self._getBuilder().gitCheckoutSha('87b43dfc5e83819fcbc036db18ac2db021e5bfc6')
+        self._getBuilder().gitCheckoutDefaultBranch()
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
@@ -197,7 +198,8 @@ class ITK(CppComponent):
         #add('CMAKE_CXX_STANDARD:STRING',11) # Cause build to fail on Ubuntu 16.04 and macOS
         builder.configureCMake()
     def repository(self):
-        return '%s/ITK' % self.controlData.gitrepo_open_site_base
+        #return '%s/ITK' % self.controlData.gitrepo_open_site_base
+        return 'https://github.com/InsightSoftwareConsortium/ITK.git'
 # ---------------------------------------------------------
 
 class VTK(CppComponent):
@@ -213,8 +215,8 @@ class VTK(CppComponent):
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
         #self._getBuilder().gitCheckoutSha('f404b97624ddc745204e90ae87872f3c05cd5e4f')
-        tag = '9.1.0'
-        self._getBuilder().gitCheckoutSha(tag)
+        #tag = 'v9.1.0'
+        self._getBuilder().gitCheckoutDefaultBranch()
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
