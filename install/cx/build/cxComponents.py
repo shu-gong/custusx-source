@@ -351,8 +351,9 @@ class Flann(CppComponent):
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
         #See CX-208 about updating Eigen versions
-        tag = '1.9.1'
-        self._getBuilder().gitCheckoutSha(tag)
+        #tag = '1.9.1'
+        #self._getBuilder().gitCheckoutSha(tag)
+        self._getBuilder().gitCheckoutDefaultBranch()
     def configure(self):
         builder = self._getBuilder()
         builder.configureCMake()
