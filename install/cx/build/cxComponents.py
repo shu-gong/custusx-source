@@ -208,7 +208,8 @@ class VTK(CppComponent):
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
-        return '%s/VTK' % self.controlData.gitrepo_open_site_base
+        #return '%s/VTK' % self.controlData.gitrepo_open_site_base
+        return 'https://github.com/Kitware/VTK.git'
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
         #self._getBuilder().gitCheckoutSha('f404b97624ddc745204e90ae87872f3c05cd5e4f')
