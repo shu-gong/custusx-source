@@ -15,7 +15,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include <ctkPluginActivator.h>
 #include "boost/shared_ptr.hpp"
 
-
 namespace cx
 {
 /**

@@ -188,8 +188,7 @@ class ITK(CppComponent):
         self._getBuilder().gitSetRemoteURL(self.repository())
         # Using ITK v4.12.0 with a fix for gcc 9
         # Newer ITK versions makes IGSTK compilation fail
-        #self._getBuilder().gitCheckoutSha('87b43dfc5e83819fcbc036db18ac2db021e5bfc6')
-        self._getBuilder().gitCheckoutDefaultBranch()
+        self._getBuilder().gitCheckoutSha('87b43dfc5e83819fcbc036db18ac2db021e5bfc6')
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
@@ -198,8 +197,7 @@ class ITK(CppComponent):
         #add('CMAKE_CXX_STANDARD:STRING',11) # Cause build to fail on Ubuntu 16.04 and macOS
         builder.configureCMake()
     def repository(self):
-        #return '%s/ITK' % self.controlData.gitrepo_open_site_base
-        return 'https://github.com/InsightSoftwareConsortium/ITK.git'
+        return '%s/ITK' % self.controlData.gitrepo_open_site_base
 # ---------------------------------------------------------
 
 class VTK(CppComponent):
@@ -210,13 +208,10 @@ class VTK(CppComponent):
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
-        #return '%s/VTK' % self.controlData.gitrepo_open_site_base
-        return 'https://github.com/Kitware/VTK.git'
+        return '%s/VTK' % self.controlData.gitrepo_open_site_base
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
-        #self._getBuilder().gitCheckoutSha('f404b97624ddc745204e90ae87872f3c05cd5e4f')
-        #tag = 'v9.1.0'
-        self._getBuilder().gitCheckoutDefaultBranch()
+        self._getBuilder().gitCheckoutSha('f404b97624ddc745204e90ae87872f3c05cd5e4f')
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
@@ -283,15 +278,13 @@ class OpenCV(CppComponent):
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
-        # if self.useExternalRepositories():
-        #    return 'https://github.com/Itseez/opencv.git'
-        # else:
-        #     return '%s/OpenCV.git' % self.controlData.gitrepo_main_site_base
-        return 'https://github.com/opencv/opencv.git'
+        if self.useExternalRepositories():
+           return 'https://github.com/Itseez/opencv.git'
+        else:
+            return '%s/OpenCV.git' % self.controlData.gitrepo_main_site_base
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
-        # self._getBuilder().gitCheckoutSha('3.3.0')
-        self._getBuilder().gitCheckoutSha('4.6.0')
+        self._getBuilder().gitCheckoutSha('3.3.0')
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
@@ -337,35 +330,6 @@ class Eigen(CppComponent):
         pass
     def getBuildType(self):
         pass
-# ---------------------------------------------------------
-
-class Flann(CppComponent):
-    def name(self):
-        return "flann"
-    def help(self):
-        return 'https://github.com/flann-lib'
-    def configPath(self):
-        return self.sourcePath()
-    def getBuildType(self):
-        return self.controlData.getBuildExternalsType()
-    def repository(self):
-        if self.controlData.git_use_https:
-            #return 'https://github.com/flann-lib/flann.git'
-            return 'https://github.com/shu-gong/flann-source.git'
-        else:
-            #return 'git@github.com:flann-lib/flann.git'
-            return 'git@github.com:shu-gong/flann-source.git'
-    def update(self):
-        self._getBuilder().gitSetRemoteURL(self.repository())
-        #See CX-208 about updating Eigen versions
-        #tag = '1.9.1'
-        #self._getBuilder().gitCheckoutSha(tag)
-        self._getBuilder().gitCheckoutDefaultBranch()
-    def configure(self):
-        builder = self._getBuilder()
-        builder.configureCMake()
-    def findPackagePath(self):
-        return self.buildPath()
 # ---------------------------------------------------------
 
 
@@ -470,8 +434,7 @@ class CustusX(CppComponent):
     def sourceFolder(self):
         return self.controlData.getRepoFolderName()
     def repository(self):
-        #return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
-	return "https://github.com/shu-gong/custusx-source"
+        return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
     def _rawCheckout(self):
         pass # should never happen. This file is in the repo.
         #self._getBuilder().gitCloneIntoExistingDirectory(self.repository(), self.controlData.main_branch)
@@ -486,7 +449,6 @@ class CustusX(CppComponent):
         add = builder.addCMakeOption
         append = builder.appendCMakeOption
         add('EIGEN_INCLUDE_DIR:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-	add('Flann_INCLUDE_DIR:PATH', '%s' % self._createSibling(Flann).sourcePath())
         add('ITK_DIR:PATH', self._createSibling(ITK).configPath())
         add('VTK_DIR:PATH', self._createSibling(VTK).configPath())
         add('IGSTK_DIR:PATH', self._createSibling(IGSTK).configPath())
@@ -496,9 +458,9 @@ class CustusX(CppComponent):
         add('CTK_SOURCE_DIR:PATH', self._createSibling(CTK).sourcePath())
         add('CTK_DIR:PATH', self._createSibling(CTK).configPath())
         add('OpenCLUtilityLibrary_DIR:PATH', self._createSibling(OpenCLUtilityLibrary).configPath())
-        add('CX_PLUGIN_org.custusx.filter.airways:BOOL', False); # Airways plugin requires FAST library
-        #if(platform.system() == 'Linux'):
-        #  add('FAST_DIR:PATH', self._createSibling(FAST).configPath())
+        add('CX_PLUGIN_org.custusx.filter.airways:BOOL', True); # Airways plugin requires FAST library
+        if(platform.system() == 'Linux'):
+         add('FAST_DIR:PATH', self._createSibling(FAST).configPath())
         add('BUILD_DOCUMENTATION:BOOL', self.controlData.build_developer_doc)
         add('CX_BUILD_USER_DOCUMENTATION:BOOL', self.controlData.build_user_doc)
         add('BUILD_TESTING:BOOL', self.controlData.mBuildTesting);

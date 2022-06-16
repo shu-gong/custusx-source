@@ -93,11 +93,6 @@ cx_add_class_qt_moc(cxGui_SRCS
     pluginFrameworkWidgets/cxPluginTableModel
     pluginFrameworkWidgets/cxPluginFrameworkWidget
     #----------------------
-
-    customizedWidgets/cxCustomizedWidget
-
-
-#-----------------
     cxMainWindow
 	cxMainWindowActions
 	cxSecondaryMainWindow
@@ -139,8 +134,6 @@ target_include_directories(cxGui
     ./utilities
 	./browser
 	./pluginFrameworkWidgets
-
-    ./customizedWidgets
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CustusX_SOURCE_DIR}/source/ThirdParty
 )
@@ -153,8 +146,6 @@ target_link_libraries(cxGui
     cxGUIExtenderService
     cxPluginUtilities
 	cxResourceFilter
-        Qt5::Widgets
-
 	)
 
 cx_doc_define_user_docs("${CMAKE_CURRENT_SOURCE_DIR}/doc")

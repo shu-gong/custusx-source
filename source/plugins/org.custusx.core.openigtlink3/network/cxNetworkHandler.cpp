@@ -32,7 +32,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxProbeSector.h"
 #include "cxProbeDefinition.h"
 
-
 namespace cx
 {
 

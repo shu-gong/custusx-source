@@ -43,7 +43,6 @@ class LibraryAssembly(object):
         self.custusx = cxComponents.CustusX()
 
         self.addComponent(cxComponents.Eigen())
-	self.addComponent(cxComponents.Flann())
         self.addComponent(cxComponents.VTK())
         self.addComponent(cxComponents.ITK())
         self.addComponent(cxComponents.OpenCV())
@@ -53,8 +52,8 @@ class LibraryAssembly(object):
         self.addComponent(cxComponents.OpenIGTLinkIO())
         self.addComponent(cxComponents.OpenCLUtilityLibrary())
         self.addComponent(cxComponents.QHttpServer())
-        #if(platform.system() == 'Linux'):
-        #  self.addComponent(cxComponents.FAST()) # NB: Using old version of FAST for macOS
+        if(platform.system() == 'Linux'):
+         self.addComponent(cxComponents.FAST()) # NB: Using old version of FAST for macOS
         self.addComponent(cxComponents.org_custusx_angleCorrection())
 				#self.addComponent(cxComponents.org_custusx_mariana())
         self.addComponent(self.custusx)

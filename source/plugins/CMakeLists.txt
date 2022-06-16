@@ -26,7 +26,6 @@ set(CX_PLUGINS
   org.custusx.registration.method.bronchoscopy:ON
   org.custusx.registration.method.centerline:ON
   org.custusx.filter.routetotarget:ON
-  #org.custusx.filter.routetonode:OFF
   org.custusx.registration.method.vessel:ON
   org.custusx.registration.method.commandline:ON
   org.custusx.registration.method.plate:ON
@@ -41,13 +40,6 @@ set(CX_PLUGINS
   org.custusx.filter.airwaysfromcenterline:ON
   org.custusx.bronchoscopynavigation:ON
   org.custusx.filter.airways:OFF
-  org.custusx.example:ON
-  #org.custusx.node:OFF
-  org.custusx.planning:ON
-  org.custusx.control:OFF
-  #org.custusx.fraxinus:OFF
-  #org.custusx.fraxinus.core.state:OFF
-  #org.custusx.fraxinus.widgets:OFF
 )
 
 #if(CX_LINUX)

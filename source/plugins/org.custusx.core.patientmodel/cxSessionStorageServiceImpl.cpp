@@ -123,7 +123,7 @@ void SessionStorageServiceImpl::save()
 
 	QString filename = QDir(mActivePatientFolder).absoluteFilePath(this->getXmlFileName());
 	XmlFileHandler::writeXmlFile(doc.doc(), filename);
-    report("Saved patient " + mActivePatientFolder);
+	report("Saved patient " + mActivePatientFolder);
 }
 
 void SessionStorageServiceImpl::clear()

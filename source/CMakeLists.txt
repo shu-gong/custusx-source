@@ -9,13 +9,14 @@
 cx_initialize_Boost()
 cx_initialize_QT()
 cx_initialize_Eigen()
-cx_initialize_Flann()
 cx_initialize_VTK()
 cx_initialize_ITK()
 
 cx_initialize_OpenIGTLink()
 cx_initialize_OpenIGTLinkIO()
 cx_initialize_CTK()
+
+cx_initialize_opencl()
 
 #cx_initialize_FAST()
 cx_initialize_OpenCLUtilityLibrary()

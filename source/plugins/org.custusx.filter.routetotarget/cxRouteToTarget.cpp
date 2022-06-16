@@ -1,3 +1,5 @@
+
+
 #include "cxRouteToTarget.h"
 #include <vtkPolyData.h>
 #include "cxBranchList.h"
@@ -17,10 +19,6 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QList>
-#include <QDebug>
-//#include "cxPlanningWidget.h"
-#include "InsertPlanner.hpp"
-
 
 #define PI 3.1415926535897
 
@@ -271,9 +269,9 @@ vtkPolyDataPtr RouteToTarget::findRouteToTarget(PointMetricPtr targetPoint)
 	return retval;
 }
 
+
 vtkPolyDataPtr RouteToTarget::findExtendedRoute(PointMetricPtr targetPoint)
 {
-
 	mTargetPosition = targetPoint->getCoordinate();
     double extensionPointIncrement = 0.25; //mm
     mExtendedRoutePositions.clear();
@@ -282,47 +280,20 @@ vtkPolyDataPtr RouteToTarget::findExtendedRoute(PointMetricPtr targetPoint)
     mExtendedCameraRotation = mCameraRotation;
 	if(mRoutePositions.size() > 0)
 	{
-        planner::InsertRRTPtr planner_ptr;
-        planner_ptr.reset(new planner::InsertPlanner());
+		double extensionDistance = findDistance(mRoutePositions.front(),mTargetPosition);
+		Eigen::Vector3d extensionVectorNormalized = ( mTargetPosition - mRoutePositions.front() ) / extensionDistance;
+		int numberOfextensionPoints = int(extensionDistance / extensionPointIncrement);
+		Eigen::Vector3d extensionPointIncrementVector = extensionVectorNormalized * extensionDistance / numberOfextensionPoints;
 
-        Vector3D start = mRoutePositions[0];
-        Vector3D start_near_before = mRoutePositions[1];
-        Vector3D goal = mTargetPosition;
-        auto path = planner_ptr->solve(start, start_near_before, goal);
-
-        for (int i = 0; i <= path.size()-1; i++){
-            mExtendedRoutePositions.insert(mExtendedRoutePositions.begin(), path[i]);
+		for (int i = 1; i<= numberOfextensionPoints; i++)
+		{
+			mExtendedRoutePositions.insert(mExtendedRoutePositions.begin(), mRoutePositions.front() + extensionPointIncrementVector*i);
             mExtendedCameraRotation.insert(mExtendedCameraRotation.begin(), mExtendedCameraRotation.front());
-        }
-        vtkPolyDataPtr retval = addVTKPoints(mExtendedRoutePositions);
-
+		}
 	}
-}
 
-vtkPolyDataPtr RouteToTarget::findExtendedRouteStraight(PointMetricPtr targetPoint)
-{
-    mTargetPosition = targetPoint->getCoordinate();
-    double extensionPointIncrement = 0.25; //mm
-    mExtendedRoutePositions.clear();
-    mExtendedRoutePositions = mRoutePositions;
-    mExtendedCameraRotation.clear();
-    mExtendedCameraRotation = mCameraRotation;
-    if(mRoutePositions.size() > 0)
-    {
-        double extensionDistance = findDistance(mRoutePositions.front(),mTargetPosition);
-        Eigen::Vector3d extensionVectorNormalized = ( mTargetPosition - mRoutePositions.front() ) / extensionDistance;
-        int numberOfextensionPoints = int(extensionDistance / extensionPointIncrement);
-        Eigen::Vector3d extensionPointIncrementVector = extensionVectorNormalized * extensionDistance / numberOfextensionPoints;
-
-        for (int i = 1; i<= numberOfextensionPoints; i++)
-        {
-            mExtendedRoutePositions.insert(mExtendedRoutePositions.begin(), mRoutePositions.front() + extensionPointIncrementVector*i);
-            mExtendedCameraRotation.insert(mExtendedCameraRotation.begin(), mExtendedCameraRotation.front());
-        }
-    }
-
-    vtkPolyDataPtr retval = addVTKPoints(mExtendedRoutePositions);
-    return retval;
+	vtkPolyDataPtr retval = addVTKPoints(mExtendedRoutePositions);
+	return retval;
 }
 
 

@@ -24,7 +24,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxLogger.h"
 #include <vtkImageResample.h>
 
-
 typedef vtkSmartPointer<class vtkCardinalSpline> vtkCardinalSplinePtr;
 
 

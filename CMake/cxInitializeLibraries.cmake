@@ -284,12 +284,3 @@ macro(cx_initialize_Eigen)
     include_directories(${EIGEN_INCLUDE_DIR})
 endmacro()
 
-
-###############################################################################
-# Initialize flann library
-# Find the package and include folders
-###############################################################################
-macro(cx_initialize_Flann)
-    find_package(Flann REQUIRED)
-    include_directories(${FLANN_INCLUDE_DIR})
-endmacro()

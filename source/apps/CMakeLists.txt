@@ -4,7 +4,6 @@ cx_add_optional_app_subdirectory("MemoryTester")
 cx_add_optional_app_subdirectory("PositionFileReader")
 cx_add_optional_app_subdirectory("OpenIGTLinkServer")
 cx_add_optional_app_subdirectory("LogConsole")
-cx_add_optional_app_subdirectory("insertplanner")
 
 if(CX_APPLE)
     cx_add_optional_app_subdirectory("OpenGLTestApplication")

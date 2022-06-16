@@ -6,6 +6,7 @@
 #include "cxMesh.h"
 #include <QDomElement>
 
+
 namespace cx
 {
 
@@ -35,7 +36,6 @@ public:
 	void searchBloodVesselBranchUp(BranchPtr searchBranchPtr, int startIndex);
 	vtkPolyDataPtr findRouteToTarget(PointMetricPtr targetPoint);
 	vtkPolyDataPtr findExtendedRoute(PointMetricPtr targetPoint);
-    vtkPolyDataPtr findExtendedRouteStraight(PointMetricPtr targetPoint);
 	vtkPolyDataPtr findRouteToTargetAlongBloodVesselCenterlines(MeshPtr bloodVesselCenterlineMesh, PointMetricPtr targetPoint);
 	vtkPolyDataPtr generateAirwaysFromBloodVesselCenterlines();
 	bool makeConnectedAirwayAndBloodVesselRoute();

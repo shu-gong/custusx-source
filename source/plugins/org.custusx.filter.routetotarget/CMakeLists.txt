@@ -39,7 +39,6 @@ set(PLUGIN_target_libraries
     cxPluginUtilities
     org_custusx_registration_method_bronchoscopy
     org_custusx_filter_airwaysfromcenterline
-    org_custusx_planning
 )
 
 set(PLUGIN_OUTPUT_DIR "")

@@ -54,9 +54,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxBrowserWidget.h"
 #include "cxActiveToolProxy.h"
 
-#include "cxCustomizedWidget.h"
-
-
 namespace cx
 {
 
@@ -106,7 +103,6 @@ MainWindow::MainWindow() :
 	this->addAsDockWidget(new ConsoleWidget(this, "console_widget_2", "Extra Console"), "Utility");
 //	this->addAsDockWidget(new ConsoleWidgetCollection(this, "ConsoleWidgets", "Consoles"), "Utility");
 	this->addAsDockWidget(new FrameTreeWidget(mServices->patient(), this), "Browsing");
-    this->addAsDockWidget(new CustomizedWidget(mServices->patient(), this), "Browsing");
 	this->addAsDockWidget(new ToolManagerWidget(mServices->tracking(), this), "Debugging");
 	this->addAsDockWidget(new PluginFrameworkWidget(this), "Browsing");
     this->addAsDockWidget(new FiltersWidget(VisServices::create(logicManager()->getPluginContext()), this), "Algorithms");
