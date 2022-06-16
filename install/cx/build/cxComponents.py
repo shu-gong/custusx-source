@@ -434,16 +434,18 @@ class CustusX(CppComponent):
     def sourceFolder(self):
         return self.controlData.getRepoFolderName()
     def repository(self):
-        return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
-    def _rawCheckout(self):
-        pass # should never happen. This file is in the repo.
-        #self._getBuilder().gitCloneIntoExistingDirectory(self.repository(), self.controlData.main_branch)
+        #return '%s/CustusX.git' % self.controlData.gitrepo_main_site_base
+        if self.controlData.git_use_https:
+            return 'https://github.com/shu-gong/custusx-source.git'
+        else:
+            return 'git@github.com:shu-gong/custusx-source.git'
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
         # warning: if this call checks out a different tag/branch than the current,
         # the script and code will be inconsistent. The user should have set the correct
         # tag/branch either manually or by using a wrapper script (e.g cxCustusXFinder).
-        self._getBuilder().gitCheckoutDefaultBranch()
+        tag = 'v0.2'
+        self._getBuilder().gitCheckoutSha(tag)
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
