@@ -86,7 +86,7 @@ private:
 	void updateStatus(ProbeDefinitionPtr message);
 	void startAllSources();
 	void stopAllSources();
-	void removeSourceFromProbe(ToolPtr tool);
+    void removeSourceFromProbe(ToolPtr tool);
 
 	QPointer<ImageReceiverThread> mClient;
 	QPointer<QThread> mThread;

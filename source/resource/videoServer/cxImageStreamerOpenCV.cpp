@@ -1,4 +1,4 @@
-/*=========================================================================
+﻿/*=========================================================================
 This file is part of CustusX, an Image Guided Therapy Application.
                  
 Copyright (c) SINTEF Department of Medical Technology.
@@ -397,9 +397,19 @@ ImagePtr ImageStreamerOpenCV::getImageMessage()
 	{
 		cv::resize(frame_source, frame, cv::Size(mRescaleSize.width(), mRescaleSize.height()), 0, 0, CV_INTER_LINEAR);
 	}
-
-	vtkImageDataPtr raw = this->convertTovtkImageData(frame);
-	ImagePtr image(new Image("openCV", raw));
+    cv::Mat gray_frame = cv::Mat(frame);
+    cv::cvtColor(frame, gray_frame,CV_RGB2GRAY);
+    vtkImageDataPtr raw_gray = this->convertTovtkImageData(gray_frame);
+    //std::cout<<"+++++++++++++++++++++++++++++++++++"<<std::endl;
+    //std::cout<< raw_gray->GetDataDimension()<<std::endl;
+    //vtkImageDataPtr raw = this->convertTovtkImageData(frame);
+    std::cout<<"-----------------------------------"<<std::endl;
+    std::cout<< gray_frame.channels()<<std::endl;
+    std::cout<<gray_frame.cols<<"A"<<gray_frame.rows<<"A"<<gray_frame.depth()<<std::endl;
+    std::cout<<"++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout<< frame.channels()<<std::endl;
+    std::cout<<frame.cols<<"B"<<frame.rows<<"B"<<frame.depth()<<std::endl;
+    ImagePtr image(new Image("openCV", raw_gray));
 	image->setAcquisitionTime(mLastGrabTime);
 	return image;
 #else
@@ -439,7 +449,8 @@ vtkImageDataPtr ImageStreamerOpenCV::convertTovtkImageData(cv::Mat& frame)
 	if (dataType == -1)
 	{
 		std::cerr << "unknown image type" << std::endl;
-		return vtkImageDataPtr();
+        dataType = VTK_UNSIGNED_CHAR;
+        //return vtkImageDataPtr();
 	}
 
 	retval->AllocateScalars(dataType, frame.channels());
