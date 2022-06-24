@@ -284,7 +284,7 @@ class OpenCV(CppComponent):
             return '%s/OpenCV.git' % self.controlData.gitrepo_main_site_base
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
-        self._getBuilder().gitCheckoutSha('3.3.0')
+        self._getBuilder().gitCheckoutSha('3.4.10')
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
@@ -332,6 +332,32 @@ class Eigen(CppComponent):
         pass
 # ---------------------------------------------------------
 
+class Flann(CppComponent):
+    def name(self):
+        return "flann"
+    def help(self):
+        return 'https://github.com/flann-lib'
+    def configPath(self):
+        return self.sourcePath()
+    def getBuildType(self):
+        return self.controlData.getBuildExternalsType()
+    def repository(self):
+        if self.controlData.git_use_https:
+            return 'https://github.com/shu-gong/flann-source.git'
+        else:
+            return 'git@github.com:shu-gong/flann-source.git'
+    def update(self):
+        self._getBuilder().gitSetRemoteURL(self.repository())
+        #See CX-208 about updating Eigen versions
+        #tag = '1.9.1'
+        self._getBuilder().gitCheckoutDefaultBranch()
+        #self._getBuilder().gitCheckoutSha(tag)
+    def configure(self):
+        builder = self._getBuilder()
+        builder.configureCMake()
+    def findPackagePath(self):
+        return self.buildPath()
+# ---------------------------------------------------------
 
 class OpenIGTLink(CppComponent):
     def name(self):

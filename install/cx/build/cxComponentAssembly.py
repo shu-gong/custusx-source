@@ -43,6 +43,7 @@ class LibraryAssembly(object):
         self.custusx = cxComponents.CustusX()
 
         self.addComponent(cxComponents.Eigen())
+        self.addComponent(cxComponents.Flann())
         self.addComponent(cxComponents.VTK())
         self.addComponent(cxComponents.ITK())
         self.addComponent(cxComponents.OpenCV())
