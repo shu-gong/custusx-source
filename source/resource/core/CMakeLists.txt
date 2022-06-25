@@ -290,7 +290,12 @@ set(CX_PUBLIC_RESOURCE_LIBRARIES
   cxPluginUtilities
   ${VTK_LIBRARIES}
   ${OPENGL_LIBRARIES}
+  ${Pangolin_LIBRARY}
+  ${CERES_LIBRARY}
   )
+message("${Pangolin_LIBRARY}" ${Pangolin_LIBRARY})
+message("${CERES_LIBRARY}" ${CERES_LIBRARY})
+
 
 set(CX_PRIVATE_RESOURCE_LIBRARIES
   ${CX_PRIVATE_RESOURCE_LIBRARIES}
@@ -335,7 +340,7 @@ target_include_directories(cxResource
   ${CMAKE_CURRENT_BINARY_DIR}/settings
   ${CMAKE_CURRENT_BINARY_DIR}/utilities
   ${PROJECT_SOURCE_DIR}/source/ThirdParty/iir1
-  )
+		)
 target_link_libraries(cxResource
 	PUBLIC
 	${CX_PUBLIC_RESOURCE_LIBRARIES}

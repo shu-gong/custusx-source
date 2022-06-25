@@ -337,8 +337,6 @@ class Flann(CppComponent):
         return "flann"
     def help(self):
         return 'https://github.com/flann-lib'
-    def configPath(self):
-        return self.sourcePath()
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
@@ -364,8 +362,6 @@ class Ceres(CppComponent):
         return "ceres"
     def help(self):
         return 'http://ceres-solver.org/installation.html'
-    def configPath(self):
-        return self.sourcePath()
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
@@ -390,8 +386,6 @@ class Pangolin(CppComponent):
         return "pangolin"
     def help(self):
         return 'https://github.com/stevenlovegrove/Pangolin'
-    def configPath(self):
-        return self.sourcePath()
     def getBuildType(self):
         return self.controlData.getBuildExternalsType()
     def repository(self):
@@ -529,6 +523,9 @@ class CustusX(CppComponent):
         add = builder.addCMakeOption
         append = builder.appendCMakeOption
         add('EIGEN_INCLUDE_DIR:PATH', '%s' % self._createSibling(Eigen).sourcePath())
+        add('FLANN_INCLUDE_DIR:PATH', self._createSibling(Flann).configPath())
+        add('Pangolin_DIR:PATH', self._createSibling(Pangolin).configPath())
+        add('Ceres_DIR:PATH', self._createSibling(Ceres).configPath())
         add('ITK_DIR:PATH', self._createSibling(ITK).configPath())
         add('VTK_DIR:PATH', self._createSibling(VTK).configPath())
         add('IGSTK_DIR:PATH', self._createSibling(IGSTK).configPath())
