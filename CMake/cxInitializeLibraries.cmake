@@ -284,6 +284,7 @@ macro(cx_initialize_Eigen)
     include_directories(${EIGEN_INCLUDE_DIR})
 endmacro()
 
+
 ###############################################################################
 # Initialize flann library
 # Find the package and include folders
@@ -291,4 +292,24 @@ endmacro()
 macro(cx_initialize_Flann)
     find_package(Flann REQUIRED)
     include_directories(${FLANN_INCLUDE_DIR})
+endmacro()
+
+
+###############################################################################
+# Initialize ceres library
+# Find the package and include folders
+###############################################################################
+macro(cx_initialize_Ceres)
+    find_package(Ceres REQUIRED)
+    include_directories(${CERES_INCLUDE_DIRS})
+endmacro()
+
+
+###############################################################################
+# Initialize panglin library
+# Find the package and include folders
+###############################################################################
+macro(cx_initialize_Pangolin)
+    find_package(Pangolin REQUIRED)
+    include_directories(${Pangolin_INCLUDE_DIRS})
 endmacro()

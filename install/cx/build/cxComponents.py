@@ -359,6 +359,58 @@ class Flann(CppComponent):
         return self.buildPath()
 # ---------------------------------------------------------
 
+class Ceres(CppComponent):
+    def name(self):
+        return "ceres"
+    def help(self):
+        return 'http://ceres-solver.org/installation.html'
+    def configPath(self):
+        return self.sourcePath()
+    def getBuildType(self):
+        return self.controlData.getBuildExternalsType()
+    def repository(self):
+        if self.controlData.git_use_https:
+            return 'https://github.com/ceres-solver/ceres-solver.git'
+        else:
+            return 'git@github.com:ceres-solver/ceres-solver.git'
+    def update(self):
+        self._getBuilder().gitSetRemoteURL(self.repository())
+        tag = '2.1.0'
+        #self._getBuilder().gitCheckoutDefaultBranch()
+        self._getBuilder().gitCheckoutSha(tag)
+    def configure(self):
+        builder = self._getBuilder()
+        builder.configureCMake()
+    def findPackagePath(self):
+        return self.buildPath()
+# ---------------------------------------------------------
+
+class Pangolin(CppComponent):
+    def name(self):
+        return "pangolin"
+    def help(self):
+        return 'https://github.com/stevenlovegrove/Pangolin'
+    def configPath(self):
+        return self.sourcePath()
+    def getBuildType(self):
+        return self.controlData.getBuildExternalsType()
+    def repository(self):
+        if self.controlData.git_use_https:
+            return 'https://github.com/stevenlovegrove/Pangolin.git'
+        else:
+            return 'git@github.com:stevenlovegrove/Pangolin.git'
+    def update(self):
+        self._getBuilder().gitSetRemoteURL(self.repository())
+        tag = 'v0.8'
+        #self._getBuilder().gitCheckoutDefaultBranch()
+        self._getBuilder().gitCheckoutSha(tag)
+    def configure(self):
+        builder = self._getBuilder()
+        builder.configureCMake()
+    def findPackagePath(self):
+        return self.buildPath()
+# ---------------------------------------------------------
+
 class OpenIGTLink(CppComponent):
     def name(self):
         return "OpenIGTLink"
@@ -470,8 +522,8 @@ class CustusX(CppComponent):
         # warning: if this call checks out a different tag/branch than the current,
         # the script and code will be inconsistent. The user should have set the correct
         # tag/branch either manually or by using a wrapper script (e.g cxCustusXFinder).
-        tag = 'v0.2'
-        self._getBuilder().gitCheckoutSha(tag)
+        #tag = 'v0.2'
+        self._getBuilder().gitCheckoutDefaultBranch()
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption

@@ -44,6 +44,8 @@ class LibraryAssembly(object):
 
         self.addComponent(cxComponents.Eigen())
         self.addComponent(cxComponents.Flann())
+        self.addComponent(cxComponents.Ceres())
+        self.addComponent(cxComponents.Pangolin())
         self.addComponent(cxComponents.VTK())
         self.addComponent(cxComponents.ITK())
         self.addComponent(cxComponents.OpenCV())
