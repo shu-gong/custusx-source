@@ -286,30 +286,10 @@ endmacro()
 
 
 ###############################################################################
-# Initialize flann library
+# Initialize deformableslam library
 # Find the package and include folders
 ###############################################################################
-macro(cx_initialize_Flann)
-    find_package(Flann REQUIRED)
-    include_directories(${FLANN_INCLUDE_DIR})
-endmacro()
-
-
-###############################################################################
-# Initialize panglin library
-# Find the package and include folders
-###############################################################################
-macro(cx_initialize_Pangolin)
-    find_package(Pangolin REQUIRED)
-    include_directories(${Pangolin_INCLUDE_DIRS})
-endmacro()
-
-
-###############################################################################
-# Initialize defslam library
-# Find the package and include folders
-###############################################################################
-macro(cx_initialize_defslam)
+macro(cx_initialize_deformableslam)
     find_package(DeformableSLAM REQUIRED)
-    include_directories(${DeformableSLAM_INCLUDE_DIRS})
+    include(${DeformableSLAM_USE_FILE})
 endmacro()

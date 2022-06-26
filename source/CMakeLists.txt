@@ -9,9 +9,7 @@
 cx_initialize_Boost()
 cx_initialize_QT()
 cx_initialize_Eigen()
-cx_initialize_Flann()
-cx_initialize_Pangolin()
-cx_initialize_defslam()
+cx_initialize_deformableslam()
 cx_initialize_VTK()
 cx_initialize_ITK()
 

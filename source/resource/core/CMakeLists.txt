@@ -290,11 +290,7 @@ set(CX_PUBLIC_RESOURCE_LIBRARIES
   cxPluginUtilities
   ${VTK_LIBRARIES}
   ${OPENGL_LIBRARIES}
-  ${Pangolin_LIBRARY}
-  ${CERES_LIBRARY}
   )
-message("${Pangolin_LIBRARY}" ${Pangolin_LIBRARY})
-message("${CERES_LIBRARY}" ${CERES_LIBRARY})
 
 
 set(CX_PRIVATE_RESOURCE_LIBRARIES

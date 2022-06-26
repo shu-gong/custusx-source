@@ -332,60 +332,6 @@ class Eigen(CppComponent):
         pass
 # ---------------------------------------------------------
 
-class Flann(CppComponent):
-    def name(self):
-        return "flann"
-    def help(self):
-        return 'https://github.com/flann-lib'
-    def getBuildType(self):
-        return self.controlData.getBuildExternalsType()
-    def repository(self):
-        if self.controlData.git_use_https:
-            return 'https://github.com/shu-gong/flann-source.git'
-        else:
-            return 'git@github.com:shu-gong/flann-source.git'
-    def update(self):
-        self._getBuilder().gitSetRemoteURL(self.repository())
-        #See CX-208 about updating Eigen versions
-        #tag = '1.9.1'
-        self._getBuilder().gitCheckoutDefaultBranch()
-        #self._getBuilder().gitCheckoutSha(tag)
-    def configure(self):
-        builder = self._getBuilder()
-        add = builder.addCMakeOption
-        #add('PYTHON_EXECUTABLE:PATH', '/usr/bin/python3.9')
-        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-        builder.configureCMake()
-    def findPackagePath(self):
-        return self.buildPath()
-# ---------------------------------------------------------
-
-class Pangolin(CppComponent):
-    def name(self):
-        return "pangolin"
-    def help(self):
-        return 'https://github.com/stevenlovegrove/Pangolin'
-    def getBuildType(self):
-        return self.controlData.getBuildExternalsType()
-    def repository(self):
-        if self.controlData.git_use_https:
-            return 'https://github.com/cheukwaylee/Pangolin-0.5.git'
-        else:
-            return 'git@github.com:cheukwaylee/Pangolin-0.5.git'
-    def update(self):
-        self._getBuilder().gitSetRemoteURL(self.repository())
-        #tag = 'v0.5'
-        self._getBuilder().gitCheckoutDefaultBranch()
-        #self._getBuilder().gitCheckoutSha(tag)
-    def configure(self):
-        builder = self._getBuilder()
-        add = builder.addCMakeOption
-        #add('PYTHON_EXECUTABLE:PATH', '/usr/bin/python3.9')
-        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-        builder.configureCMake()
-    def findPackagePath(self):
-        return self.buildPath()
-# ---------------------------------------------------------
 
 class DeformableSLAM(CppComponent):
     def name(self):
@@ -406,9 +352,6 @@ class DeformableSLAM(CppComponent):
         #self._getBuilder().gitCheckoutSha(tag)
     def configure(self):
         builder = self._getBuilder()
-        add = builder.addCMakeOption
-        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-        add('Pangolin_INCLUDE_DIRS:PATH', self._createSibling(Pangolin).configPath())
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()
@@ -532,8 +475,6 @@ class CustusX(CppComponent):
         add = builder.addCMakeOption
         append = builder.appendCMakeOption
         add('EIGEN_INCLUDE_DIR:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-        add('FLANN_INCLUDE_DIR:PATH', self._createSibling(Flann).configPath())
-        add('Pangolin_INCLUDE_DIRS:PATH', self._createSibling(Pangolin).configPath())
         add('DeformableSLAM_DIR:PATH', self._createSibling(DeformableSLAM).configPath())
         add('ITK_DIR:PATH', self._createSibling(ITK).configPath())
         add('VTK_DIR:PATH', self._createSibling(VTK).configPath())

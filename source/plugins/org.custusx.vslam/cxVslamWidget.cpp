@@ -11,7 +11,12 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include <iostream>
 #include "cxVslamWidget.h"
 #include <QVBoxLayout>
-
+#include "opencv2/core/core.hpp"
+#include "Modules/Common/System.h"
+namespace cv
+{
+    class VideoCapture;
+}
 namespace cx
 {
 
@@ -33,34 +38,13 @@ VslamWidget::~VslamWidget()
 void VslamWidget::startVslam()
 {
     qDebug()<<"开始规划了";
-    /*
+/*
     cv::VideoCapture cap;
     cap.open("/home/shu/HamlynDatasetShort/f7phantom/f7_dynamic_deint_L.avi");
-    // Create SLAM system. It initializes all system threads and gets ready to
-    // process frames.
-    defSLAM::System SLAM("/home/shu/Gitee/defslam/custusx-position/Vocabulary/ORBvoc.txt", "/home/shu/HamlynDatasetShort/f7phantom/hamlyn.yaml", true);
-
-    uint i(0);
+    std::cout<<"cap status"<<cap.isOpened()<<std::endl;
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
 
-    while (cap.isOpened())
-    {
-        cv::Mat imLeft;
-        cap >> imLeft;
-
-        if (imLeft.empty())
-        {
-            cerr << endl
-                 << "Failed to load image at: " << to_string(i) << endl;
-            return 1;
-        }
-
-        SLAM.TrackMonocular(imLeft, i);
-        i++;
-    }
-
-    SLAM.Shutdown();
 */
 }
 
