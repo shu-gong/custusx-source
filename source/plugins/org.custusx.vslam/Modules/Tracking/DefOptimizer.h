@@ -26,8 +26,8 @@
 #include "KeyFrame.h"
 #include "Map.h"
 
-#include "Thirdparty/g2o/g2o/core/sparse_optimizer.h"
-#include "Thirdparty/g2o/g2o/types/sim3.h"
+#include "../../Thirdparty/g2o/g2o/core/sparse_optimizer.h"
+#include "../../Thirdparty/g2o/g2o/types/sim3.h"
 // Fwr declaration
 namespace ORB_SLAM2
 {

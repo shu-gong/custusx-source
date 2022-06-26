@@ -10,11 +10,16 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 =========================================================================*/
 #include <iostream>
 #include "cxVslamWidget.h"
+#include <QVBoxLayout>
+
 namespace cx
 {
 
 VslamWidget::VslamWidget(QWidget* parent) :QWidget(parent), mVerticalLayout(new QVBoxLayout(this))
 {
+    this->setObjectName("VslamWidget");
+    this->setWindowTitle("Vslam");
+
     QPushButton *btn = new QPushButton("vslam test", this);
     mVerticalLayout->addWidget(btn);
     connect(btn,&QPushButton::clicked,this,&VslamWidget::startVslam);

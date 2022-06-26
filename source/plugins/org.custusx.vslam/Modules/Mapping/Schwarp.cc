@@ -30,7 +30,7 @@
 #include <chrono>
 #include <ctime>
 #include <iostream>
-#include <Thirdparty/BBS/bbs_coloc.h>
+#include "../../Thirdparty/BBS/bbs_coloc.h"
 
 namespace Warps
 {

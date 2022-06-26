@@ -296,20 +296,20 @@ endmacro()
 
 
 ###############################################################################
-# Initialize ceres library
-# Find the package and include folders
-###############################################################################
-macro(cx_initialize_Ceres)
-    find_package(Ceres REQUIRED)
-    include_directories(${CERES_INCLUDE_DIRS})
-endmacro()
-
-
-###############################################################################
 # Initialize panglin library
 # Find the package and include folders
 ###############################################################################
 macro(cx_initialize_Pangolin)
     find_package(Pangolin REQUIRED)
     include_directories(${Pangolin_INCLUDE_DIRS})
+endmacro()
+
+
+###############################################################################
+# Initialize defslam library
+# Find the package and include folders
+###############################################################################
+macro(cx_initialize_defslam)
+    find_package(DeformableSLAM REQUIRED)
+    include_directories(${DeformableSLAM_INCLUDE_DIRS})
 endmacro()

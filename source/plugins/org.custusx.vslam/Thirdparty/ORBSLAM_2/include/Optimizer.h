@@ -28,8 +28,8 @@
 #include "Map.h"
 #include "MapPoint.h"
 
-#include "Thirdparty/g2o/g2o/core/sparse_optimizer.h"
-#include "Thirdparty/g2o/g2o/types/sim3.h"
+#include "../../../Thirdparty/g2o/g2o/core/sparse_optimizer.h"
+#include "../../../Thirdparty/g2o/g2o/types/sim3.h"
 
 namespace ORB_SLAM2
 {

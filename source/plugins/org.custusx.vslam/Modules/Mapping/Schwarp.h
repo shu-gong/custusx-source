@@ -22,8 +22,8 @@
 #ifndef SCHWARP_H
 #define SCHWARP_H
 
-#include <Thirdparty/BBS/bbs.h>
-#include <Thirdparty/BBS/bbs_MAC.h>
+#include "../../Thirdparty/BBS/bbs.h"
+#include "../../Thirdparty/BBS/bbs_MAC.h"
 
 #include <Eigen/Dense>
 #include <Eigen/Sparse>

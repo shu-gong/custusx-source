@@ -30,7 +30,7 @@
 #include "KeyFrame.h"
 #include "MapPoint.h"
 #include "Schwarp.h"
-#include "Thirdparty/BBS/bbs_coloc.h"
+#include "../../Thirdparty/BBS/bbs_coloc.h"
 #include <Eigen/Core>
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>

@@ -22,11 +22,11 @@
 #include "GroundTruthKeyFrame.h"
 #include "GroundTruthCalculator.h"
 #include "MapPoint.h"
-#include <Modules/ToolsPCL/PCLNormalEstimator.h>
+#include "../../Modules/ToolsPCL/PCLNormalEstimator.h"
 #include <math.h>
 #include <mutex>
 #include <opencv2/core/core.hpp>
-#include "Modules/ToolsPCL/SmootherMLS.h"
+#include "../../Modules/ToolsPCL/SmootherMLS.h"
 
 namespace defSLAM
 {

@@ -32,7 +32,7 @@
 #include "KeyFrame.h"
 #include "MapPoint.h"
 
-#include <Thirdparty/BBS/bbs_MAC.h>
+#include "../../Thirdparty/BBS/bbs_MAC.h"
 #include <mutex>
 
 namespace defSLAM

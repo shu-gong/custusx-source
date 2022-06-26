@@ -22,7 +22,7 @@
 #include "GroundTruthFrame.h"
 #include "GroundTruthCalculator.h"
 #include "MinMedianFilter.h"
-#include "Modules/ToolsPCL/SmootherMLS.h"
+#include "../../Modules/ToolsPCL/SmootherMLS.h"
 #include <iomanip>
 #include <iostream>
 #include <sstream>

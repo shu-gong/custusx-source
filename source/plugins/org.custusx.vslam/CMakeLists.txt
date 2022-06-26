@@ -12,6 +12,7 @@ FILE(GLOB SRC_DEFSLAM_FILES
         "Modules/Matching/*.cc"
         "Modules/Settings/*.h"
         "Modules/Template/*.cc"
+        "Modules/ToolsPCL/*.cc"
         "Modules/Tracking/*.cc"
         "Modules/Viewer/*.cc")
 
@@ -192,9 +193,10 @@ target_include_directories(org_custusx_vslam
     ./Modules/GroundTruth
     ./Modules/Mapping
     ./Modules/Matching
-    ./Modules/Template
-    ./Modules/Tracking
     ./Modules/Settings
+    ./Modules/Template
+    ./Modules/ToolsPCL
+    ./Modules/Tracking
     ./Modules/Viewer
     ${CMAKE_CURRENT_BINARY_DIR}
 )

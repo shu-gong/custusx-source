@@ -25,7 +25,7 @@
 #include "iostream"
 
 #include "SurfacePoint.h"
-#include "Thirdparty/BBS/bbs.h"
+#include "../../Thirdparty/BBS/bbs.h"
 #include <Eigen/Dense>
 #include <opencv2/core/core.hpp>
 

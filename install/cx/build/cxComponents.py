@@ -352,30 +352,9 @@ class Flann(CppComponent):
         #self._getBuilder().gitCheckoutSha(tag)
     def configure(self):
         builder = self._getBuilder()
-        builder.configureCMake()
-    def findPackagePath(self):
-        return self.buildPath()
-# ---------------------------------------------------------
-
-class Ceres(CppComponent):
-    def name(self):
-        return "ceres"
-    def help(self):
-        return 'http://ceres-solver.org/installation.html'
-    def getBuildType(self):
-        return self.controlData.getBuildExternalsType()
-    def repository(self):
-        if self.controlData.git_use_https:
-            return 'https://github.com/ceres-solver/ceres-solver.git'
-        else:
-            return 'git@github.com:ceres-solver/ceres-solver.git'
-    def update(self):
-        self._getBuilder().gitSetRemoteURL(self.repository())
-        tag = '2.1.0'
-        #self._getBuilder().gitCheckoutDefaultBranch()
-        self._getBuilder().gitCheckoutSha(tag)
-    def configure(self):
-        builder = self._getBuilder()
+        add = builder.addCMakeOption
+        #add('PYTHON_EXECUTABLE:PATH', '/usr/bin/python3.9')
+        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()
@@ -390,16 +369,46 @@ class Pangolin(CppComponent):
         return self.controlData.getBuildExternalsType()
     def repository(self):
         if self.controlData.git_use_https:
-            return 'https://github.com/stevenlovegrove/Pangolin.git'
+            return 'https://github.com/cheukwaylee/Pangolin-0.5.git'
         else:
-            return 'git@github.com:stevenlovegrove/Pangolin.git'
+            return 'git@github.com:cheukwaylee/Pangolin-0.5.git'
     def update(self):
         self._getBuilder().gitSetRemoteURL(self.repository())
-        tag = 'v0.8'
-        #self._getBuilder().gitCheckoutDefaultBranch()
-        self._getBuilder().gitCheckoutSha(tag)
+        #tag = 'v0.5'
+        self._getBuilder().gitCheckoutDefaultBranch()
+        #self._getBuilder().gitCheckoutSha(tag)
     def configure(self):
         builder = self._getBuilder()
+        add = builder.addCMakeOption
+        #add('PYTHON_EXECUTABLE:PATH', '/usr/bin/python3.9')
+        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
+        builder.configureCMake()
+    def findPackagePath(self):
+        return self.buildPath()
+# ---------------------------------------------------------
+
+class DeformableSLAM(CppComponent):
+    def name(self):
+        return "DeformableSLAM"
+    def help(self):
+        return 'https://github.com/shu-gong/defslam-source'
+    def getBuildType(self):
+        return self.controlData.getBuildExternalsType()
+    def repository(self):
+        if self.controlData.git_use_https:
+            return 'https://github.com/shu-gong/defslam-source.git'
+        else:
+            return 'git@github.com:shu-gong/defslam-source.git'
+    def update(self):
+        self._getBuilder().gitSetRemoteURL(self.repository())
+        #tag = 'v0.8'
+        self._getBuilder().gitCheckoutDefaultBranch()
+        #self._getBuilder().gitCheckoutSha(tag)
+    def configure(self):
+        builder = self._getBuilder()
+        add = builder.addCMakeOption
+        add('EIGEN3_INCLUDE_DIRS:PATH', '%s' % self._createSibling(Eigen).sourcePath())
+        add('Pangolin_INCLUDE_DIRS:PATH', self._createSibling(Pangolin).configPath())
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()
@@ -524,8 +533,8 @@ class CustusX(CppComponent):
         append = builder.appendCMakeOption
         add('EIGEN_INCLUDE_DIR:PATH', '%s' % self._createSibling(Eigen).sourcePath())
         add('FLANN_INCLUDE_DIR:PATH', self._createSibling(Flann).configPath())
-        add('Pangolin_DIR:PATH', self._createSibling(Pangolin).configPath())
-        add('Ceres_DIR:PATH', self._createSibling(Ceres).configPath())
+        add('Pangolin_INCLUDE_DIRS:PATH', self._createSibling(Pangolin).configPath())
+        add('DeformableSLAM_DIR:PATH', self._createSibling(DeformableSLAM).configPath())
         add('ITK_DIR:PATH', self._createSibling(ITK).configPath())
         add('VTK_DIR:PATH', self._createSibling(VTK).configPath())
         add('IGSTK_DIR:PATH', self._createSibling(IGSTK).configPath())
