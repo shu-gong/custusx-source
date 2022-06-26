@@ -1,1 +1,0 @@
-valgrind --leak-check=yes --log-file="valgrindoutput.txt" ./simplestereo /home/jose/DeformableSLAM/Vocabulary/ORBvoc.txt /media/jose/NuevoVol/videosDataset/Jose/stereo3.yaml /media/jose/NuevoVol/videosDataset/Jose/Mandala3/images /media/jose/NuevoVol/videosDataset/Jose/Mandala3/images /media/jose/NuevoVol/videosDataset/Jose/Mandala3/timestamps/timestamps.txt 
