@@ -2,6 +2,7 @@ project(org_custusx_vslam)
 
 cx_initialize_deformableslam()
 cx_initialize_opencv()
+cx_initialize_Pangolin()
 
 set(PLUGIN_export_directive "${PROJECT_NAME}_EXPORT")
 
@@ -40,9 +41,11 @@ set(PLUGIN_target_libraries
     cxResourceVisualization
     cxLogicManager
     #cxLogicManager
-        #cxGrabber
-        Qt5::Widgets
+    #cxGrabber
+    Qt5::Widgets
     DeformableSLAM
+    ${Pangolin_LIBRARIES}
+    ${OpenCV_LIBS}
     )
 
 set(PLUGIN_OUTPUT_DIR "")

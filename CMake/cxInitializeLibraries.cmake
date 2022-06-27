@@ -293,3 +293,12 @@ macro(cx_initialize_deformableslam)
     find_package(DeformableSLAM REQUIRED)
     include(${DeformableSLAM_USE_FILE})
 endmacro()
+
+###############################################################################
+# Initialize Pangolin library
+# Find the package.
+###############################################################################
+macro(cx_initialize_Pangolin)
+    find_package(Pangolin REQUIRED )
+    include_directories(${Pangolin_INCLUDE_DIRS})
+endmacro()
