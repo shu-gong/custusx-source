@@ -17,6 +17,8 @@ set(CX_PLUGINS
   org.custusx.core.state:ON
   org.custusx.core.filemanager:ON
   org.custusx.dicom:OFF
+        org.custusx.example:ON
+
   org.custusx.usreconstruction.vnncl:ON
   org.custusx.usreconstruction.pnn:ON
   org.custusx.registration:ON

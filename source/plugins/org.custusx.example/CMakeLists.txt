@@ -1,7 +1,7 @@
 project(org_custusx_example)
 
 set(PLUGIN_export_directive "${PROJECT_NAME}_EXPORT")
-
+cx_initialize_opencv()
 set(PLUGIN_SRCS
   cxExamplePluginActivator.cpp
   cxExampleGUIExtenderService.cpp
@@ -27,11 +27,14 @@ set(PLUGIN_resources
 #Compute the plugin dependencies
 ctkFunctionGetTargetLibraries(PLUGIN_target_libraries)
 set(PLUGIN_target_libraries 
-    ${PLUGIN_target_libraries}   
+    ${PLUGIN_target_libraries}
+        #cxResource
     cxGUIExtenderService
     #cxLogicManager
     cxPluginUtilities
 	Qt5::Widgets
+        #cxGrabber
+        ${OpenCV_LIBS}
     )
 
 set(PLUGIN_OUTPUT_DIR "")

@@ -352,6 +352,8 @@ class DeformableSLAM(CppComponent):
         #self._getBuilder().gitCheckoutSha(tag)
     def configure(self):
         builder = self._getBuilder()
+        add = builder.addCMakeOption
+        add('OpenCV_DIR:PATH', self._createSibling(OpenCV).configPath())
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()

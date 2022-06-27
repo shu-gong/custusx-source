@@ -41,11 +41,12 @@ set(PLUGIN_target_libraries
     cxResourceVisualization
     cxLogicManager
     #cxLogicManager
-    #cxGrabber
+    cxGrabber
     Qt5::Widgets
     DeformableSLAM
     ${Pangolin_LIBRARIES}
     ${OpenCV_LIBS}
+    org_custusx_core_video
     )
 
 set(PLUGIN_OUTPUT_DIR "")

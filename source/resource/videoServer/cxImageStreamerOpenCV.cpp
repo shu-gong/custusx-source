@@ -31,6 +31,15 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxLogger.h"
 #include "cxVideoServerConfig.h"
 
+#include "cxStringProperty.h"
+#include "cxDoubleProperty.h"
+#include "cxBoolProperty.h"
+#include "cxSender.h"
+#include "cxFilePathProperty.h"
+#include "cxProfile.h"
+#include "cxReporter.h"
+#include <QDebug>
+
 #ifdef CX_USE_OpenCV
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -49,11 +58,13 @@ std::vector<PropertyPtr> ImageStreamerOpenCVArguments::getSettings(QDomElement r
 
 DoublePropertyBasePtr ImageStreamerOpenCVArguments::getVideoPortOption(QDomElement root)
 {
+
 	DoublePropertyPtr retval;
 	retval = DoubleProperty::initialize("videoport", "Video Port", "Select video source as an integer from 0 and up.", 0, DoubleRange(0, 10, 1), 0, root);
 	retval->setGuiRepresentation(DoublePropertyBase::grSPINBOX);
 	retval->setGroup("OpenCV");
 	return retval;
+
 }
 
 BoolPropertyBasePtr ImageStreamerOpenCVArguments::getPrintPropertiesOption(QDomElement root)
@@ -174,11 +185,11 @@ void ImageStreamerOpenCV::deinitialize_local()
 #endif
 }
 
-void ImageStreamerOpenCV::initialize_local()
-{
+    void ImageStreamerOpenCV::initialize_local()
+    {
 #ifdef CX_USE_OpenCV
 
-	if (!mArguments.count("videoport"))
+     if (!mArguments.count("videoport"))
 		mArguments["videoport"] = "0";
 	if (!mArguments.count("out_width"))
 		mArguments["out_width"] = "";
@@ -253,7 +264,7 @@ void ImageStreamerOpenCV::initialize_local()
 		std::cout << std::endl;
 	}
 #endif
-}
+    }
 
 void ImageStreamerOpenCV::startStreaming(SenderPtr sender)
 {

@@ -13,8 +13,13 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #define CXEXAMPLEWIDGET_H_
 
 #include <QWidget>
-class QVBoxLayout;
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <iostream>
+#include <QDebug>
 
+class QVBoxLayout;
+class QPushButton;
 namespace cx
 {
 
@@ -36,6 +41,9 @@ public:
 private:
 	QString defaultWhatsThis() const;
 	QVBoxLayout*  mVerticalLayout;
+private slots:
+            void startExample();
+
 };
 
 } /* namespace cx */

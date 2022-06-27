@@ -54,6 +54,7 @@ public:
 	StringMap convertToCommandLineArguments(QDomElement root);
 
 	DoublePropertyBasePtr getVideoPortOption(QDomElement root);
+
 	BoolPropertyBasePtr getPrintPropertiesOption(QDomElement root);
 };
 
