@@ -358,6 +358,10 @@ class DeformableSLAM(CppComponent):
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()
+    def addConfigurationToDownstreamLib(self, builder):
+        add = builder.addCMakeOption
+        add('DeformableSLAM_DIR:PATH', self.buildPath())
+
 # ---------------------------------------------------------
 
 class OpenIGTLink(CppComponent):
@@ -478,7 +482,6 @@ class CustusX(CppComponent):
         add = builder.addCMakeOption
         append = builder.appendCMakeOption
         add('EIGEN_INCLUDE_DIR:PATH', '%s' % self._createSibling(Eigen).sourcePath())
-        add('DeformableSLAM_DIR:PATH', self._createSibling(DeformableSLAM).configPath())
         add('ITK_DIR:PATH', self._createSibling(ITK).configPath())
         add('VTK_DIR:PATH', self._createSibling(VTK).configPath())
         add('IGSTK_DIR:PATH', self._createSibling(IGSTK).configPath())

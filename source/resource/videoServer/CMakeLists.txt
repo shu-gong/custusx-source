@@ -14,8 +14,6 @@ cx_initialize_deformableslam()
 set(ALL_LINK_LIBRARIES
     ${BOOST_LIBRARIES}
     OpenIGTLink
-        #log2
-    DeformableSLAM
 )
 cx_initialize_opencv()
 
@@ -111,7 +109,7 @@ target_include_directories(cxGrabber
     PUBLIC
     .
         # Log2
-    #${DeformableSLAM_INCLUDE_DIRS}
+    ${DeformableSLAM_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 target_link_libraries(cxGrabber
@@ -120,6 +118,7 @@ target_link_libraries(cxGrabber
     PUBLIC
     cxOpenIGTLinkUtilities
     cxResource
+        DeformableSLAM
     )
 
 add_subdirectory(testing)

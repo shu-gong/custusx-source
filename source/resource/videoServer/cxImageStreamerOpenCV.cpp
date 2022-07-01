@@ -32,7 +32,6 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxVideoServerConfig.h"
 
 #include <QDebug>
-#include "Modules/Common/System.h"
 
 #ifdef CX_USE_OpenCV
 #include <opencv2/highgui/highgui.hpp>
@@ -140,13 +139,13 @@ ImageStreamerOpenCV::ImageStreamerOpenCV()
 	mGrabbing = false;
 	mAvailableImage = false;
 	setSendInterval(40);
+ mSLAMSystem.reset( new DeformableSLAM::System("/home/shu/ORBvoc.txt", "/home/shu/HamlynDatasetShort/f7phantom/hamlyn.yaml", false));
 
 #ifdef CX_USE_OpenCV
 	mVideoCapture.reset(new cv::VideoCapture());
 #endif
 	mSendTimer = new QTimer(this);
 	connect(mSendTimer, SIGNAL(timeout()), this, SLOT(send())); // this signal will be executed in the thread of THIS, i.e. the main thread.
-
 }
 
 

@@ -24,9 +24,9 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include <QStringList>
 #include "cxSender.h"
 #include "cxStreamer.h"
+#include "System.h"
 
 class QDomElement;
-
 
 class QTimer;
 
@@ -36,7 +36,8 @@ namespace cv
 	class Mat;
 }
 
-namespace DeformbaleSLAM{
+namespace DeformableSLAM
+{
     class System;
 }
 
@@ -47,7 +48,7 @@ typedef boost::shared_ptr<class DoublePropertyBase> DoublePropertyBasePtr;
 typedef boost::shared_ptr<class BoolPropertyBase> BoolPropertyBasePtr;
 
 typedef boost::shared_ptr<cv::VideoCapture> VideoCapturePtr;
-
+typedef boost::shared_ptr<DeformableSLAM::System> SLAMSytemPtr;
 /**
  */
 class cxGrabber_EXPORT ImageStreamerOpenCVArguments
@@ -110,7 +111,7 @@ private:
 	QDateTime mLastGrabTime;
 	bool mAvailableImage;
 	bool mGrabbing;
- SLAMSystemPtr mSLAMSystem;
+    SLAMSytemPtr mSLAMSystem;
 };
 }
 

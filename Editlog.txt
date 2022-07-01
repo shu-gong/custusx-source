@@ -1,0 +1,15 @@
+Log1: Jul 1 10:20
+Comment OpenCV_DIR so that not to build OpenCV from source
+
+Log2: Jul 1 11:16
+Comment videoServer/CMakeList.txt line 112
+Exchange line 18 ${DeformableSLAM_LIBRARIES} to DeformableSLAM
+
+log3
+modify DeformableSLAM/CMakeLists.txt line94 to set(DSLAM_DIR ${PROJECT_SOURCE_DIR})
+
+log4
+comment apps/CMakeLists.txt line5 #cx_add_optional_app_subdirectory("OpenIGTLinkServer")
+
+
+
