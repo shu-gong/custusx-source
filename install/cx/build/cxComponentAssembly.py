@@ -46,7 +46,8 @@ class LibraryAssembly(object):
         self.addComponent(cxComponents.DeformableSLAM())
         self.addComponent(cxComponents.VTK())
         self.addComponent(cxComponents.ITK())
-        self.addComponent(cxComponents.OpenCV())
+        #Log1
+        #self.addComponent(cxComponents.OpenCV())
         self.addComponent(cxComponents.OpenIGTLink())
         self.addComponent(cxComponents.IGSTK())
         self.addComponent(cxComponents.CTK())

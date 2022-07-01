@@ -7,7 +7,7 @@ cmake_policy(SET CMP0012 NEW)
 # Create a list of available plug-ins and make them known to the build system
 set(CX_PLUGINS
   ${CX_PLUGINS}
-  org.custusx.vslam:ON
+  org.custusx.vslam:OFF
   org.custusx.core.patientmodel:ON
   org.custusx.core.view:ON
   org.custusx.core.tracking:ON
@@ -17,7 +17,7 @@ set(CX_PLUGINS
   org.custusx.core.state:ON
   org.custusx.core.filemanager:ON
   org.custusx.dicom:OFF
-        org.custusx.example:ON
+        org.custusx.example:OFF
 
   org.custusx.usreconstruction.vnncl:ON
   org.custusx.usreconstruction.pnn:ON

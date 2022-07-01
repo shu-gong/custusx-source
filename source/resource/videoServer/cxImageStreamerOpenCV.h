@@ -36,6 +36,10 @@ namespace cv
 	class Mat;
 }
 
+namespace DeformbaleSLAM{
+    class System;
+}
+
 namespace cx
 {
 typedef boost::shared_ptr<class Property> PropertyPtr;
@@ -106,9 +110,8 @@ private:
 	QDateTime mLastGrabTime;
 	bool mAvailableImage;
 	bool mGrabbing;
-
+ SLAMSystemPtr mSLAMSystem;
 };
-
 }
 
 #endif /* CXIMAGESTREAMEROPENCV_H_ */

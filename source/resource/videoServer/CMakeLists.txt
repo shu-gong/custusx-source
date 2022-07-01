@@ -9,19 +9,21 @@ if(CX_WIN32)
          ${ULTERIUS_LIBRARY}
     )
 endif(CX_WIN32)
+cx_initialize_deformableslam()
 
 set(ALL_LINK_LIBRARIES
     ${BOOST_LIBRARIES}
     OpenIGTLink
+        #log2
+    DeformableSLAM
 )
-
 cx_initialize_opencv()
 
 configure_file(
   "${CMAKE_CURRENT_SOURCE_DIR}/cxVideoServerConfig.h.in"
   "${CMAKE_CURRENT_BINARY_DIR}/cxVideoServerConfig.h"
   )
-  
+
 if(CX_USE_OpenCV)
     set(ALL_LINK_LIBRARIES
         ${ALL_LINK_LIBRARIES}
@@ -108,12 +110,13 @@ add_library( cxGrabber
 target_include_directories(cxGrabber
     PUBLIC
     .
+        # Log2
+    #${DeformableSLAM_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 target_link_libraries(cxGrabber
     PRIVATE
     ${LINK_LIBRARIES}
-
     PUBLIC
     cxOpenIGTLinkUtilities
     cxResource

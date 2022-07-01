@@ -353,7 +353,8 @@ class DeformableSLAM(CppComponent):
     def configure(self):
         builder = self._getBuilder()
         add = builder.addCMakeOption
-        add('OpenCV_DIR:PATH', self._createSibling(OpenCV).configPath())
+        #Log1
+        #add('OpenCV_DIR:PATH', self._createSibling(OpenCV).configPath())
         builder.configureCMake()
     def findPackagePath(self):
         return self.buildPath()
@@ -483,7 +484,8 @@ class CustusX(CppComponent):
         add('IGSTK_DIR:PATH', self._createSibling(IGSTK).configPath())
         add('OpenIGTLink_DIR:PATH', self._createSibling(OpenIGTLink).configPath())
         add('OpenIGTLinkIO_DIR:PATH', self._createSibling(OpenIGTLinkIO).configPath())
-        add('OpenCV_DIR:PATH', self._createSibling(OpenCV).configPath())
+        #Log1
+        #add('OpenCV_DIR:PATH', self._createSibling(OpenCV).configPath())
         add('CTK_SOURCE_DIR:PATH', self._createSibling(CTK).sourcePath())
         add('CTK_DIR:PATH', self._createSibling(CTK).configPath())
         add('OpenCLUtilityLibrary_DIR:PATH', self._createSibling(OpenCLUtilityLibrary).configPath())

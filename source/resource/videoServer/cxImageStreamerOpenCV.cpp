@@ -31,14 +31,8 @@ See Lisence.txt (https://github.com/SINTEFMedtek/CustusX/blob/master/License.txt
 #include "cxLogger.h"
 #include "cxVideoServerConfig.h"
 
-#include "cxStringProperty.h"
-#include "cxDoubleProperty.h"
-#include "cxBoolProperty.h"
-#include "cxSender.h"
-#include "cxFilePathProperty.h"
-#include "cxProfile.h"
-#include "cxReporter.h"
 #include <QDebug>
+#include "Modules/Common/System.h"
 
 #ifdef CX_USE_OpenCV
 #include <opencv2/highgui/highgui.hpp>
@@ -152,7 +146,9 @@ ImageStreamerOpenCV::ImageStreamerOpenCV()
 #endif
 	mSendTimer = new QTimer(this);
 	connect(mSendTimer, SIGNAL(timeout()), this, SLOT(send())); // this signal will be executed in the thread of THIS, i.e. the main thread.
+
 }
+
 
 ImageStreamerOpenCV::~ImageStreamerOpenCV()
 {
