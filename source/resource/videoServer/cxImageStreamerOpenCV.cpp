@@ -177,6 +177,7 @@ void ImageStreamerOpenCV::deinitialize_local()
 		qApp->processEvents();
 	mVideoCapture->release();
 	mVideoCapture.reset(new cv::VideoCapture());
+ //mSLAMSystem->Shutdown();
 #endif
 }
 
@@ -415,6 +416,18 @@ ImagePtr ImageStreamerOpenCV::getImageMessage()
 
 vtkImageDataPtr ImageStreamerOpenCV::convertTovtkImageData(cv::Mat& frame)
 {
+ uint i(0);
+ cv::Mat imLeft;
+ imLeft = frame;
+ if (imLeft.empty())
+ {
+  cerr << endl
+       << "Failed to load image at: " << to_string(i) << endl;
+ }
+
+ mSLAMSystem->TrackMonocular(imLeft, i);
+ i++;
+
 	vtkImageDataPtr retval = vtkImageDataPtr::New();
 
 	Eigen::Array3i dim(frame.cols, frame.rows, 1);
