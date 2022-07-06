@@ -139,7 +139,7 @@ ImageStreamerOpenCV::ImageStreamerOpenCV()
 	mGrabbing = false;
 	mAvailableImage = false;
 	setSendInterval(40);
- mSLAMSystem.reset( new DeformableSLAM::System("/home/shu/ORBvoc.txt", "/home/shu/HamlynDatasetShort/f7phantom/hamlyn.yaml", false));
+ mSLAMSystem.reset( new DeformableSLAM::System("/home/shu/ORBvoc.txt", "/home/shu/HamlynDatasetShort/f7phantom/hamlyn.yaml", true));
 
 #ifdef CX_USE_OpenCV
 	mVideoCapture.reset(new cv::VideoCapture());
@@ -426,8 +426,9 @@ vtkImageDataPtr ImageStreamerOpenCV::convertTovtkImageData(cv::Mat& frame)
  }
 
  mSLAMSystem->TrackMonocular(imLeft, i);
+ cv::Mat im = mSLAMSystem->mpFrameDrawer->DrawFrame();
  i++;
-
+frame = im;
 	vtkImageDataPtr retval = vtkImageDataPtr::New();
 
 	Eigen::Array3i dim(frame.cols, frame.rows, 1);
