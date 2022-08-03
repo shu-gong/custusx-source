@@ -8,7 +8,7 @@ SurgeryX是由上海交通大学IRMV实验室开发的一款基于医学图像�
 
 ## 使用须知
 
-注意：SurgeryX是一款用于医学研究的工具，不是用于临床使用，并有临床使用许可。
+注意：SurgeryX是一款用于医学研究的工具，不用于临床使用，没有临床使用许可。
 
 该集成方案遵循BSD-3许可，软件的可靠性无法保证，请自行维护以确认内部接口稳定。上海交通大学IRMV实验室对使用该软件不收取费用，也不对使用软件造成的任何损失负责。
 
@@ -27,6 +27,7 @@ SurgeryX是由上海交通大学IRMV实验室开发的一款基于医学图像�
 5. Eigen
 6. CUDA（请测试和自身显卡驱动相匹配的CUDA版本）
 7. Python版本： 2.x.x 
+8. Ceres Solver版本: 2.1.0 
 
 **安装依赖**
 
@@ -86,7 +87,7 @@ cd CX/CX
 
 **软件下载阶段**
 
-1. 我可以从哪里获得源代码？答：你可以从https://github.com/shu-gong/custusx-source下载源代码。
+1. 我可以从哪里获得源代码？答：你可以从[https://github.com/shu-gong/custusx-source](https://github.com/shu-gong/custusx-source)下载源代码。
 
 **软件安装阶段**
 
@@ -99,12 +100,12 @@ cd CX/CX
 
 **软件开发阶段**
 
-1. 拿到代码无从下手怎么办，该从什么地方入手启动开发？答：由于SurgeryX从CustusX开发而来，众多功能还在还处在不稳定阶段，所以请先从未修改的https://github.com/SINTEFMedtek/CustusX开始，并使用CustusX推荐的构建方法来构建，请阅读[CustusX: Build instructions](https://www.custusx.org/uploads/developer_doc/nightly/build_instructions.html)和[CustusX: Customize Applications](https://www.custusx.org/uploads/developer_doc/nightly/customize_applications.html)从开发一个Example插件开始。你可以修改Example插件的内容，重新编译软件，并观察你修改的内容如何影响整个程序。
-2. 我在****[custusx-source](https://github.com/shu-gong/custusx-source)/[source](https://github.com/shu-gong/custusx-source/tree/master/source)/[plugins](https://github.com/shu-gong/custusx-source/tree/master/source/plugins)/CMakeLists.txt**t中明明启用了相关插件，为什么编译后找不到该插件？答：编译阶段顺利，但是插件无法启动，可能是插件使用了没有引用的库文件。请在该插件对应的CMakeLists.txt文件中启用你需要的库文件。
+1. 拿到代码无从下手怎么办，该从什么地方入手启动开发？答：由于SurgeryX从CustusX开发而来，众多功能还在还处在不稳定阶段，所以请先从未修改的[CustusX](https://github.com/SINTEFMedtek/CustusX)开始，并使用CustusX推荐的构建方法来构建，请阅读[CustusX: Build instructions](https://www.custusx.org/uploads/developer_doc/nightly/build_instructions.html)和[CustusX: Customize Applications](https://www.custusx.org/uploads/developer_doc/nightly/customize_applications.html)从开发一个Example插件开始。你可以修改Example插件的内容，重新编译软件，并观察你修改的内容如何影响整个程序。
+2. 我在source/plugins/CMakeLists.txt中明明启用了相关插件，为什么编译后找不到该插件？答：编译阶段顺利，但是插件无法启动，可能是插件使用了没有引用的库文件。请在该插件对应的CMakeLists.txt文件中启用你需要的库文件。
 3. 有许多插件都是用来VTK外部库，但是我没有在CMakeLists.txt文件中看到VTK字样呢？答：VTK已经集成在cxResource库中，引用cxResource即可引入VTK。
 4. 我想新增一个功能，我需要在哪里集成我的模块呢？答：如果这个功能和软件原有的功能没有很强的关联，你可以从Plugin开始开发。如果该功能和软件已有的功能相似，你最好在功能相似的Plugin内部开发，这样你可以很方便的调用该plugin内部的其他模块。如果该功能是一项基础功能，例如读写视频，你需要在Resource层面开发。
 5. 我该如何更快的检索软件各个模块的功能？答：请前往[CustusX: CustusX Developer Documentation](https://www.custusx.org/uploads/developer_doc/nightly/)查询。
-6. 除了该文档，我还可以在哪里获得该软件开发相关的帮助？答：你可以查阅CustusX的开发文档[CustusX: CustusX Developer Documentation](https://www.custusx.org/uploads/developer_doc/nightly/)，或前往https://github.com/SINTEFMedtek/CustusX/issues和[Issues · SINTEFMedtek/Fraxinus (github.com)](https://github.com/SINTEFMedtek/Fraxinus/issues)查询。
+6. 除了该文档，我还可以在哪里获得该软件开发相关的帮助？答：你可以查阅CustusX的开发文档[CustusX: CustusX Developer Documentation](https://www.custusx.org/uploads/developer_doc/nightly/)，或前往[CustusX-issues](https://github.com/SINTEFMedtek/CustusX/issues)和[Fraxinus-issues](https://github.com/SINTEFMedtek/Fraxinus/issues)查询。
 
 **软件使用阶段**
 
@@ -113,7 +114,7 @@ cd CX/CX
 3. 我已经打开了摄像头，为什么没有出现画面？答：请将软件的展示画面调整至Video视图，并点击connect连接摄像头。
 4. 我已经打开了摄像头，并将软件显示画面调整至Video视图，并连接了摄像头，为什么该视图黑屏了？答：请等待几秒钟，该软件正在进行VSLAM初始化。
 5. 开启摄像头后几秒钟为什么显示time out? 答：该问题属于已知问题，原因在于软件中集成VSLAM算法本身不稳定。
-6. VSLAM需要的vocabulary和配置文件我该在哪里下载，并放置在何处？答：请前往https://github.com/shu-gong/defslam-source下载该软件使用的VSLAM算法，并将其中的vocabulary文件解压后放置在cxImageStreamerOpenCV.cpp文件内提供的地址处。请修改以下代码为你所需要的地址。请下载HamlynDataset数据库，并将对应的文件放置在你在下列代码设置的地址中。
+6. VSLAM需要的vocabulary和配置文件我该在哪里下载，并放置在何处？答：请前往[defslam-source](https://github.com/shu-gong/defslam-source)下载该软件使用的VSLAM算法，并将其中的vocabulary文件解压后放置在cxImageStreamerOpenCV.cpp文件内提供的地址处。请修改以下代码为你所需要的地址。请下载HamlynDataset数据库，并将对应的文件放置在你在下列代码设置的地址中。
 
 ```cpp
 mSLAMSystem.reset( new DeformableSLAM::System("/home/shu/ORBvoc.txt", "/home/shu/HamlynDatasetShort/f7phantom/hamlyn.yaml", true));
