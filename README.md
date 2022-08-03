@@ -58,13 +58,13 @@ cd CX/CX
 
 如果按照前文提供的方法，编译好后该文件目录如下图。
 
-![Untitled](/home/shu/CustusX/master/cx/CX/CX/doc/images/architecture/dir.png)
+![Untitled](./doc/images/architecture/dir.png)
 
 ## 软件架构
 
 该软件使用C++编写，代码中集成了CMake, Qt, CTK, VTK, ITK, Eigen, OpenCV, IGSTK, OpenIGTLink和其他库文件。该软件使用由CTK提供的OSGI插件框架作为软件开发设计模式。请阅读下图并查阅[CustusX: Architecture](https://www.custusx.org/uploads/developer_doc/nightly/architecture.html)了解详细该软件架构。
 
-![Untitled](/home/shu/CustusX/master/cx/CX/CX/doc/images/architecture/arch.png)
+![Untitled](./doc/images/architecture/arch.png)
 
 ## 下载数据集
 
